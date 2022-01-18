@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/border.xml" value="0.240625" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_main.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_splash.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_found.xml" value="0.19157608695652173" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_get_in.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_get_in2.xml" value="0.19157608695652173" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_lost.xml" value="0.19157608695652173" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

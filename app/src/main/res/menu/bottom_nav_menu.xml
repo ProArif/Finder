@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/lost"
+        android:title="Lost Someone?"
+        android:icon="@drawable/person_add">
+
+    </item>
+
+    <item
+        android:id="@+id/found"
+        android:title="Found Someone?"
+        android:icon="@drawable/person_search">
+
+    </item>
+
+    <item
+        android:id="@+id/profile"
+        android:title="Login/Profile"
+        android:icon="@drawable/user">
+
+    </item>
+
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_baseline_app_settings_alt_24">
+
+    </item>
+</menu>
