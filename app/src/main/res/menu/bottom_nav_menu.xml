@@ -3,21 +3,21 @@
 
     <item
         android:id="@+id/lost"
-        android:title="Lost Someone?"
+        android:title="Lost"
         android:icon="@drawable/person_add">
 
     </item>
 
     <item
         android:id="@+id/found"
-        android:title="Found Someone?"
+        android:title="Found"
         android:icon="@drawable/person_search">
 
     </item>
 
     <item
         android:id="@+id/profile"
-        android:title="Login/Profile"
+        android:title="Profile"
         android:icon="@drawable/user">
 
     </item>

@@ -3,14 +3,19 @@ package com.nodeers.finder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.nodeers.finder.fragments.AddLostFoundDataFragment;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
@@ -21,15 +26,27 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView btmNav;
     private ActionBar toolbar;
     private Fragment fragment;
+    private FloatingActionButton fab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        loadFragment(new LostFragment());
         btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
+        fab = findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new AddLostFoundDataFragment());
+            }
+        });
+        
+        btmNav.setBackground(null);
 
         btmNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
