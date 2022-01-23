@@ -52,5 +52,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-analytics'
 
+    //SafetyNET
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta04'
+
+    //pinview
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+
+
 
 }
