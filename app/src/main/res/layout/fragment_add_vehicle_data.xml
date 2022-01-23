@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AddVehicleDataFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tv"
+            android:text="Enter the information's below:"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Lost/found?"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnr_lost_found_vehicle"
+                android:spinnerMode="dropdown"
+                android:padding="15dp"
+                android:layout_weight="2">
+
+            </Spinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Registration No. "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextVehicleRegNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Reg. No. here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Engine No. "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Engine No. here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Upload Photo"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/imageVehicle"
+                android:src="@drawable/image"
+                android:layout_weight="2">
+
+            </ImageView>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Data"
+            android:layout_margin="10dp"
+            android:id="@+id/btnSubmitVehicleData">
+
+        </Button>
+
+
+    </LinearLayout>
+
+</FrameLayout>

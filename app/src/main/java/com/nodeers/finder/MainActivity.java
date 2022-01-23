@@ -2,20 +2,21 @@ package com.nodeers.finder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.nodeers.finder.fragments.AddLostFoundDataFragment;
+import com.nodeers.finder.fragments.AddLostFoundPersonDataFragment;
+import com.nodeers.finder.fragments.AddVehicleDataFragment;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
@@ -23,10 +24,8 @@ import com.nodeers.finder.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView btmNav;
     private ActionBar toolbar;
     private Fragment fragment;
-    private FloatingActionButton fab;
 
 
     @Override
@@ -35,14 +34,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         loadFragment(new LostFragment());
-        btmNav = findViewById(R.id.nav);
+        BottomNavigationView btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
-        fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new AddLostFoundDataFragment());
+                //loadFragment(new AddLostFoundPersonDataFragment());
+                showDialog();
             }
         });
         
@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
     }
 
 
@@ -93,6 +95,45 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    //for custom choice options
+
+    public void showDialog (){
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose One");
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.person_vehicle_chooser_layout, null);
+        builder.setView(customLayout);
+
+        ImageButton btn_person = customLayout.findViewById(R.id.imageButtonPerson);
+        ImageButton btn_vehicle = customLayout.findViewById(R.id.imageButtonCar);
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(true);
+        dialog.show();
+
+
+        btn_person.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                loadFragment(new AddLostFoundPersonDataFragment());
+            }
+        });
+
+        btn_vehicle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                loadFragment(new AddVehicleDataFragment());
+            }
+        });
+
+
     }
 
 

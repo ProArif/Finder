@@ -1,49 +1,358 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context=".fragments.AddLostFoundDataFragment">
+    tools:context=".fragments.AddLostFoundPersonDataFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:text="What do you want to post?"
-        android:padding="10dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="300dp"
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/choice_spinner"
-        android:padding="10dp"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:text="Lost or found?"
+            android:padding="10dp"
+            />
+
+        <Spinner
+            android:id="@+id/choice_spinner_lost_found"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:text="Enter the informations of missing/found person below: "
+            />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:text="Lost or found?"
-        android:padding="10dp"
-        />
+        android:orientation="horizontal"
+        android:layout_weight="3">
 
-    <Spinner
-        android:id="@+id/choice_spinner_lost_found"
-        android:padding="10dp"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Name "
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Enter Name here"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        />
+        android:orientation="horizontal"
+        android:layout_weight="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Fathers Name "
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextFathersName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Enter Fathers Name here"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Grandfathers Name "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextGrFathersName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Grandfathers Name here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mothers Name "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextMothersName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Mothers Name here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Body Color"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
+
+        </TextView>
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnr_body_color"
+            android:spinnerMode="dropdown"
+            android:padding="15dp"
+            android:layout_weight="2">
+
+        </Spinner>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextDob"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Date of birth here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Upload Photo"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/image"
+                android:src="@drawable/image"
+                android:layout_weight="2">
+
+            </ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:id="@+id/foundVisibleOptions">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Are you a police officials?"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1">
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/choice_police"
+                android:padding="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:layout_weight="2"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Case No."
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextCaseNo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Enter Case No. here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="GD No."
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights">
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/editTextGDNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Enter GD No. here"
+                    android:layout_weight="2"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit"
+            android:layout_margin="10dp"
+            android:text="Submit Data">
+
+        </Button>
+
 
 </LinearLayout>
+
+</ScrollView>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Finder</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">Phone</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -19,6 +19,17 @@
     <string-array name="choice_array2">
         <item>Lost</item>
         <item>Found</item>
+    </string-array>
+
+    <string-array name="choice_color">
+        <item>White</item>
+        <item>Black</item>
+    </string-array>
+    <string-array name="choice_police">
+        <item>OC</item>
+        <item>ASP</item>
+        <item>Addl. SP</item>
+        <item>SP</item>
     </string-array>
 
 </resources>
