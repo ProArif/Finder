@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -116,8 +117,6 @@ public class GetInFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         btnSendCode.setVisibility(View.INVISIBLE);
 
-
-
         mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
@@ -188,10 +187,11 @@ public class GetInFragment extends Fragment {
         if (verificationCode.isEmpty()){
             Toast.makeText(getContext(),"Please enter your code",Toast.LENGTH_LONG).show();
         }else{
-            if (verificationCode != null){
+
 
                  credential = PhoneAuthProvider.getCredential(mVerificationId, verificationCode);
-            }
+                 signInWithPhoneAuthCredential(credential);
+
         }
     }
 
@@ -205,7 +205,11 @@ public class GetInFragment extends Fragment {
                             Log.d("signin", "signInWithCredential:success");
                             Toast.makeText(getContext(),"Sign in completed",Toast.LENGTH_LONG).show();
 
+                            Fragment fragment = new ProfileFragment();
+                            loadFragment(fragment);
+
                             FirebaseUser user = task.getResult().getUser();
+
                             // Update UI
                         } else {
                             // Sign in failed, display a message and update the UI
@@ -216,6 +220,14 @@ public class GetInFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

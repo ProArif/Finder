@@ -4,13 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,17 +25,23 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.nodeers.finder.fragments.AddLostFoundPersonDataFragment;
 import com.nodeers.finder.fragments.AddVehicleDataFragment;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
+import com.nodeers.finder.fragments.ProfileFragment;
 import com.nodeers.finder.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActionBar toolbar;
     private Fragment fragment;
+
+    private FirebaseUser  mUser;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -42,6 +55,21 @@ public class MainActivity extends AppCompatActivity {
         firebaseAppCheck.installAppCheckProviderFactory(
                 SafetyNetAppCheckProviderFactory.getInstance());
 
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() != null){
+                    mUser = mAuth.getCurrentUser();
+
+                }else
+                {
+
+                }
+            }
+        });
+
         loadFragment(new LostFragment());
         BottomNavigationView btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
@@ -50,8 +78,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //loadFragment(new AddLostFoundPersonDataFragment());
-                showDialog();
+                if (mUser != null) {
+                    // User is signed in
+                    showDialog();
+                } else {
+                    // No user is signed in
+                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
         
@@ -78,8 +112,16 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.profile:
                         toolbar.setTitle("Login/Profile");
-                        fragment = new GetInFragment();
-                        loadFragment(fragment);
+                        if (mUser != null) {
+                            fragment = new ProfileFragment();
+                            loadFragment(fragment);
+                        } else {
+                            // No user is signed in
+                            fragment = new GetInFragment();
+                            loadFragment(fragment);
+                            Toast.makeText(MainActivity.this,"Please login!",Toast.LENGTH_LONG).show();
+                        }
+
                         return true;
 
                     case R.id.settings:
@@ -96,6 +138,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+
+        return true;
+    }
 
 
     private void loadFragment(Fragment fragment) {
@@ -107,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //for custom choice options
-
     public void showDialog (){
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -124,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.setCancelable(true);
         dialog.show();
-
 
         btn_person.setOnClickListener(new View.OnClickListener() {
             @Override

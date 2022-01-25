@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "3919797075-1lilh537jrbf6ui3m3fdefqn8s14mtje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nodeers.finder",
+            "certificate_hash": "8055a149ba631cb64fb6cdaef77a008ac6781fa9"
+          }
+        },
+        {
           "client_id": "3919797075-b3ubp9g6klrq5c4c66ukv6tbhj25tfk8.apps.googleusercontent.com",
           "client_type": 3
         }

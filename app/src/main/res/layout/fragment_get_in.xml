@@ -11,6 +11,16 @@
     android:paddingRight="@dimen/fragment_horizontal_margin"
     tools:context=".fragments.GetInFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please login to continue to your profile."
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal">
+    </TextView>
+
 
         <EditText
             android:id="@+id/edt_email_phn"
@@ -68,9 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:cursorVisible="true"
-            android:hint="Hint."
+            android:hint="Enter code"
             android:inputType="text"
-            android:itemBackground="@mipmap/ic_launcher"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="18sp"
