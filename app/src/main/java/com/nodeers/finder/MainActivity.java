@@ -32,6 +32,7 @@ import com.nodeers.finder.fragments.AddVehicleDataFragment;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
+import com.nodeers.finder.fragments.PoliceGetInFragment;
 import com.nodeers.finder.fragments.ProfileFragment;
 import com.nodeers.finder.fragments.SettingsFragment;
 
@@ -117,8 +118,7 @@ public class MainActivity extends AppCompatActivity {
                             loadFragment(fragment);
                         } else {
                             // No user is signed in
-                            fragment = new GetInFragment();
-                            loadFragment(fragment);
+                            showGetInOptionsDialog();
                             Toast.makeText(MainActivity.this,"Please login!",Toast.LENGTH_LONG).show();
                         }
 
@@ -201,5 +201,47 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //for custom choice options
+    public void showGetInOptionsDialog (){
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose a category to login");
 
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.category_chooser, null);
+        builder.setView(customLayout);
+
+        ImageButton btn_police = customLayout.findViewById(R.id.imageButtonPolice);
+        ImageButton btn_general = customLayout.findViewById(R.id.imageButtonGeneral);
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(true);
+        dialog.show();
+
+        btn_police.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                loadFragment(new PoliceGetInFragment());
+            }
+        });
+
+        btn_general.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                loadFragment(new GetInFragment());
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
 }

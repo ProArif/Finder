@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="400dp">
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView7"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:gravity="center"-->
+<!--        android:text="Please select a category to continue"-->
+<!--        android:textSize="25sp"-->
+<!--        android:textStyle="italic"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/imageButtonPolice"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:weightSum="2">
+        <ImageButton
+            android:id="@+id/imageButtonPolice"
+            android:layout_width="120dp"
+            android:layout_height="138dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_baseline_person_outline" />
+
+        <ImageButton
+            android:id="@+id/imageButtonGeneral"
+            android:layout_width="120dp"
+            android:layout_height="138dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/car" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

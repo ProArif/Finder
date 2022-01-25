@@ -68,10 +68,9 @@ public class SettingsFragment extends Fragment {
                     // signout user
                     alertsignout();
 
-
                 } else {
                     // No user is signed in
-                    Toast.makeText(getContext(),"No user signed in!!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Please login first!!!",Toast.LENGTH_LONG).show();
                 }
 
             }

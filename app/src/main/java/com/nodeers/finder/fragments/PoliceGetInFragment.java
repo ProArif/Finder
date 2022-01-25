@@ -1,8 +1,10 @@
 package com.nodeers.finder.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -10,13 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
@@ -27,7 +27,6 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthProvider;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -37,11 +36,11 @@ import com.nodeers.finder.R;
 import java.util.concurrent.TimeUnit;
 
 
-public class GetInFragment extends Fragment {
+public class PoliceGetInFragment extends Fragment {
 
-    private EditText edtPhone;
+    private EditText edtPhone,edtThana,edtDist;
     private Button btnSendCode,btnVerify;
-    private String phone;
+    private String phone,thana,dist;
     private ProgressBar progressBar;
     private LinearLayout layoutVerify;
 
@@ -53,13 +52,14 @@ public class GetInFragment extends Fragment {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     private PhoneAuthCredential credential;
 
-    public GetInFragment() {
+
+    public PoliceGetInFragment() {
         // Required empty public constructor
     }
 
 
-    public static GetInFragment newInstance(String param1, String param2) {
-        GetInFragment fragment = new GetInFragment();
+    public static PoliceGetInFragment newInstance(String param1, String param2) {
+        PoliceGetInFragment fragment = new PoliceGetInFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -76,35 +76,27 @@ public class GetInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vw = inflater.inflate(R.layout.fragment_get_in, container, false);
+        View v = inflater.inflate(R.layout.fragment_police_get_in, container, false);
 
         mAuth = FirebaseAuth.getInstance();
 
-        edtPhone = vw.findViewById(R.id.edt_email_phn);
+        edtPhone = v.findViewById(R.id.edt_police_phn);
+        edtThana = v.findViewById(R.id.edt_police_thana);
+        edtDist = v.findViewById(R.id.edt_police_dist);
 
-        progressBar = vw.findViewById(R.id.loading);
-        layoutVerify = vw.findViewById(R.id.layoutVerify);
-        pinView = vw.findViewById(R.id.VerifyPin);
+        progressBar = v.findViewById(R.id.loading);
+        layoutVerify = v.findViewById(R.id.layoutVerifyPolice);
+        pinView = v.findViewById(R.id.VerifyPin);
 
 
 
-        btnSendCode = vw.findViewById(R.id.send_code);
-        btnVerify = vw.findViewById(R.id.btn_verify);
+        btnSendCode = v.findViewById(R.id.send_code_police);
+        btnVerify = v.findViewById(R.id.btn_verify_police);
 
         btnSendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phone = edtPhone.getText().toString().trim();
-
-                if (phone.isEmpty()){
-                    edtPhone.setError("Please enter your phone no.");
-                }
-                else if (phone.length() != 11){
-                    edtPhone.setError("Please enter your phone no. correctly");
-                }
-                else {
-                    sendOTP();
-                }
+                initializeData();
             }
         });
 
@@ -115,8 +107,82 @@ public class GetInFragment extends Fragment {
             }
         });
 
-        return vw ;
+
+        return v;
     }
+
+    private void initializeData() {
+        thana = edtThana.getText().toString().trim();
+        dist = edtDist.getText().toString().trim();
+        phone = edtPhone.getText().toString().trim();
+
+        if (phone.isEmpty()){
+            edtPhone.setError("Please enter your phone no.");
+        }
+        else if (phone.length() != 11){
+            edtPhone.setError("Please enter your phone no. correctly");
+        }
+        else if (!phone.contains("013200")){
+            edtPhone.setError("Police phone no. must contain 013200");
+            showGeneralLogin();
+        }
+
+        else if (thana.isEmpty()){
+            edtThana.setError("Please enter your Thana");
+        }
+        else if (dist.isEmpty()){
+            edtDist.setError("Please enter your District");
+        }
+        else{
+            sendOTP();
+        }
+
+
+    }
+
+    public void showGeneralLogin (){
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Not Police?");
+        builder.setMessage("Got here by mistake? Go to General Login Instead?");
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+             dialog.dismiss();
+            }
+        });
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.category_chooser, null);
+        builder.setView(customLayout);
+
+        ImageButton btn_police = customLayout.findViewById(R.id.imageButtonPolice);
+        ImageButton btn_general = customLayout.findViewById(R.id.imageButtonGeneral);
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(true);
+        dialog.show();
+
+        btn_police.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                loadFragment(new PoliceGetInFragment());
+            }
+        });
+
+        btn_general.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                loadFragment(new GetInFragment());
+            }
+        });
+
+
+    }
+
 
     private void sendOTP() {
         progressBar.setVisibility(View.VISIBLE);
@@ -164,7 +230,7 @@ public class GetInFragment extends Fragment {
                 Log.d("code sent", "onCodeSent:" + verificationId);
 
                 // Save verification ID and resending token so we can use them later
-                 mVerificationId = verificationId;
+                mVerificationId = verificationId;
                 String mResendToken = token.toString();
 
                 progressBar.setVisibility(View.GONE);
@@ -192,10 +258,8 @@ public class GetInFragment extends Fragment {
         if (verificationCode.isEmpty()){
             Toast.makeText(getContext(),"Please enter your code",Toast.LENGTH_LONG).show();
         }else{
-
-
-                 credential = PhoneAuthProvider.getCredential(mVerificationId, verificationCode);
-                 signInWithPhoneAuthCredential(credential);
+            credential = PhoneAuthProvider.getCredential(mVerificationId, verificationCode);
+            signInWithPhoneAuthCredential(credential);
 
         }
     }
@@ -234,9 +298,4 @@ public class GetInFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-
-
-
-
 }

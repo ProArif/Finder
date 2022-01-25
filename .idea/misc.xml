@@ -7,6 +7,7 @@
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_log_out.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_main.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_splash.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/category_chooser.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_add_lost_found_data.xml" value="0.18885869565217392" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_add_vehicle_data.xml" value="0.17980072463768115" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_found.xml" value="0.19157608695652173" />
@@ -15,8 +16,10 @@
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_lost.xml" value="0.19157608695652173" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_lost_person.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_lost_vehicle.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_police_get_in.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_profile.xml" value="0.16530797101449277" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_settings.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/gridview_items.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/person_vehicle_chooser_layout.xml" value="0.33" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/search_menu.xml" value="0.22447916666666667" />

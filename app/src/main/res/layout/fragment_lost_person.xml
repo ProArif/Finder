@@ -8,85 +8,11 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
+    <!--Grid View for displaying our data from Firebase-->
+    <GridView
+        android:id="@+id/idGVCourses"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <!--Image view for displaying our image-->
-            <ImageView
-                android:id="@+id/idIVimage"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_margin="4dp"
-                android:background="@color/white"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/person_add"
-                android:padding="3dp" />
-
-            <!--Text view for displaying our text -->
-            <TextView
-                android:id="@+id/idTVtext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:padding="3dp"
-                android:text="Asad"
-                android:textStyle="bold"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="4dp">
-
-            <!--Image view for displaying our image-->
-            <ImageView
-                android:id="@+id/idIVimage2"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                android:layout_margin="4dp"
-                android:background="@color/white"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/person_add"
-                android:padding="3dp" />
-
-            <!--Text view for displaying our text -->
-            <TextView
-                android:id="@+id/idTVtext2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:padding="3dp"
-                android:text="Rajib"
-                android:textStyle="bold"
-                android:textSize="30sp"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-
+        android:layout_height="match_parent"
+        android:numColumns="2" />
 
 </FrameLayout>

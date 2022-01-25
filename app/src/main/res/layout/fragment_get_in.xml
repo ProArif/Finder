@@ -21,7 +21,6 @@
         android:layout_gravity="center_horizontal">
     </TextView>
 
-
         <EditText
             android:id="@+id/edt_email_phn"
             android:layout_width="match_parent"
@@ -34,6 +33,7 @@
             android:inputType="textPhonetic"
             android:selectAllOnFocus="true"
              />
+
 
         <Button
             android:id="@+id/send_code"
