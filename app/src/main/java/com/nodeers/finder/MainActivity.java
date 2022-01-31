@@ -2,26 +2,35 @@ package com.nodeers.finder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.app.SearchManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
@@ -38,8 +47,14 @@ import com.nodeers.finder.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+    public NavigationView navView;
+
     private ActionBar toolbar;
     private Fragment fragment;
+    private TextView tv_blink;
 
     private FirebaseUser  mUser;
     private FirebaseAuth mAuth;
@@ -50,12 +65,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        navView = findViewById(R.id.side_nav);
+        navView.setItemIconTintList(null);
+
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //for safetynet app verification
         FirebaseApp.initializeApp(/*context=*/ this);
         FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
         firebaseAppCheck.installAppCheckProviderFactory(
                 SafetyNetAppCheckProviderFactory.getInstance());
 
+//        tv_blink = findViewById(R.id.blinktext);
+//        BlinkTxtAnime();
         mAuth = FirebaseAuth.getInstance();
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
@@ -74,24 +109,24 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new LostFragment());
         BottomNavigationView btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
-        FloatingActionButton fab = findViewById(R.id.fab);
+        //FloatingActionButton fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mUser != null) {
-                    // User is signed in
-                    showDialog();
-                } else {
-                    // No user is signed in
-                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mUser != null) {
+//                    // User is signed in
+//                    showDialog();
+//                } else {
+//                    // No user is signed in
+//                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
+//                }
+//
+//            }
+//        });
         
         btmNav.setBackground(null);
-
+        btmNav.setItemIconTintList(null);
         btmNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -100,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (id){
                     case R.id.lost:
-                        toolbar.setTitle("Lost Someone/Vehicle?");
                         fragment = new LostFragment();
                         loadFragment(fragment);
                         return true;
@@ -139,6 +173,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
@@ -153,6 +196,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         return true;
+    }
+
+    private void BlinkTxtAnime(){
+        // adding the color to be shown
+        ObjectAnimator animator = ObjectAnimator.ofInt(tv_blink, "backgroundColor", Color.BLUE, Color.RED, Color.GREEN);
+
+        // duration of one color
+        animator.setDuration(500);
+        animator.setEvaluator(new ArgbEvaluator());
+
+        // color will be show in reverse manner
+        animator.setRepeatCount(Animation.REVERSE);
+
+        // It will be repeated up to infinite time
+        animator.setRepeatCount(Animation.INFINITE);
+        animator.start();
     }
 
 

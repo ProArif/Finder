@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
@@ -44,7 +45,7 @@ public class GetInFragment extends Fragment {
     private String phone;
     private ProgressBar progressBar;
     private LinearLayout layoutVerify;
-
+    private TextView tv_pbar;
 
     private PinView pinView;
     private String verificationCode, mVerificationId;
@@ -81,6 +82,7 @@ public class GetInFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
 
         edtPhone = vw.findViewById(R.id.edt_email_phn);
+        tv_pbar = vw.findViewById(R.id.txt_pbar);
 
         progressBar = vw.findViewById(R.id.loading);
         layoutVerify = vw.findViewById(R.id.layoutVerify);
@@ -120,6 +122,7 @@ public class GetInFragment extends Fragment {
 
     private void sendOTP() {
         progressBar.setVisibility(View.VISIBLE);
+        tv_pbar.setVisibility(View.VISIBLE);
         btnSendCode.setVisibility(View.INVISIBLE);
 
         mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -151,6 +154,7 @@ public class GetInFragment extends Fragment {
 
                 // Show a message and update the UI
                 progressBar.setVisibility(View.GONE);
+                tv_pbar.setVisibility(View.GONE);
                 btnSendCode.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
             }
@@ -168,6 +172,7 @@ public class GetInFragment extends Fragment {
                 String mResendToken = token.toString();
 
                 progressBar.setVisibility(View.GONE);
+                tv_pbar.setVisibility(View.GONE);
                 btnSendCode.setVisibility(View.VISIBLE);
                 layoutVerify.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(),"Successfully code send!",Toast.LENGTH_LONG).show();

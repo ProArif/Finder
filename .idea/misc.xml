@@ -4,8 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/border.xml" value="0.240625" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/lost.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/person_add.xml" value="0.117" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/profile.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/drawable/settings.xml" value="0.1" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_log_out.xml" value="0.20108695652173914" />
-        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_main.xml" value="0.19293478260869565" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_splash.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/category_chooser.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_add_lost_found_data.xml" value="0.18885869565217392" />
@@ -21,8 +27,14 @@
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_settings.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/gridview_items.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/person_vehicle_chooser_layout.xml" value="0.33" />
-        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/nav_side_menu.xml" value="0.1398148148148148" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/search_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/mipmap-anydpi-v26/found.xml" value="0.117" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/mipmap-xxhdpi/found.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/mipmap-xxhdpi/lost.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/mipmap-xxhdpi/profile.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/mipmap-xxhdpi/settings.xml" value="0.1" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/xml/searchable.xml" value="0.20471014492753623" />
       </map>
     </option>

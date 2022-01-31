@@ -60,6 +60,9 @@ dependencies {
     //pinview
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 
 }
