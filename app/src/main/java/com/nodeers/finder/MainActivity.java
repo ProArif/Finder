@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -135,27 +137,21 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (id){
                     case R.id.lost:
+                        toolbar.setTitle("Lost?");
                         fragment = new LostFragment();
                         loadFragment(fragment);
                         return true;
 
-                    case R.id.found:
-                        toolbar.setTitle("Found Someone/Vehicle?");
-                        fragment = new FoundFragment();
-                        loadFragment(fragment);
-                        return true;
-
-                    case R.id.profile:
-                        toolbar.setTitle("Login/Profile");
+                    case R.id.add:
+                        toolbar.setTitle("Upload");
                         if (mUser != null) {
-                            fragment = new ProfileFragment();
-                            loadFragment(fragment);
-                        } else {
-                            // No user is signed in
-                            showGetInOptionsDialog();
-                            Toast.makeText(MainActivity.this,"Please login!",Toast.LENGTH_LONG).show();
-                        }
-
+                    // User is signed in
+                    showDialog();
+                } else {
+                    // No user is signed in
+                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
+                    showGetInOptionsDialog();
+                }
                         return true;
 
                     case R.id.settings:
@@ -169,6 +165,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch (id){
+                    case R.id.lost:
+                        loadFragment(new LostFragment());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.profile:
+                        if (mUser != null) {
+                            fragment = new ProfileFragment();
+                            loadFragment(fragment);
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                        } else {
+                            // No user is signed in
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                            showGetInOptionsDialog();
+                            Toast.makeText(MainActivity.this,"Please login!",Toast.LENGTH_LONG).show();
+                        }
+                        return true;
+                    case R.id.found:
+                        loadFragment(new FoundFragment());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
 
     }
 
@@ -176,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -228,6 +257,12 @@ public class MainActivity extends AppCompatActivity {
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose One");
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            }
+        });
 
         // set the custom layout
         final View customLayout = getLayoutInflater().inflate(R.layout.person_vehicle_chooser_layout, null);
@@ -265,6 +300,12 @@ public class MainActivity extends AppCompatActivity {
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose a category to login");
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
 
         // set the custom layout
         final View customLayout = getLayoutInflater().inflate(R.layout.category_chooser, null);

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     tools:context=".fragments.AddLostFoundPersonDataFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="300dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -26,7 +25,7 @@
 
         <Spinner
             android:id="@+id/choice_spinner_lost_found"
-            android:padding="10dp"
+            android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"
@@ -40,66 +39,66 @@
             android:textStyle="italic"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:text="Enter the informations of missing/found person below: "
+            android:text="Enter the informations of missing/wanted person below: "
             />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="3">
-
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name "
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:padding="10dp"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights">
+            android:orientation="horizontal"
+            android:layout_weight="3">
 
-        </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Name "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="0dp"
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter Name here"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Enter Name here"
-            android:layout_weight="2"/>
+            android:orientation="horizontal"
+            android:layout_weight="3">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Fathers Name "
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="3">
+            </TextView>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Fathers Name "
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:padding="10dp"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights">
+            <EditText
+                android:id="@+id/editTextFathersName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter Fathers Name here"
+                android:layout_weight="2"/>
 
-        </TextView>
-
-        <EditText
-            android:id="@+id/editTextFathersName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Enter Fathers Name here"
-            android:layout_weight="2"/>
-
-    </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -125,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Enter Grandfathers Name here"
+                android:hint="Enter Grandfathers Name here"
                 android:layout_weight="2"/>
 
         </LinearLayout>
@@ -154,40 +153,40 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Enter Mothers Name here"
+                android:hint="Enter Mothers Name here"
                 android:layout_weight="2"/>
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="3">
-
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Body Color"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:padding="10dp"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights">
+            android:orientation="horizontal"
+            android:layout_weight="3">
 
-        </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Body Color"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
 
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spnr_body_color"
-            android:spinnerMode="dropdown"
-            android:padding="15dp"
-            android:layout_weight="2">
+            </TextView>
 
-        </Spinner>
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spnr_body_color"
+                android:spinnerMode="dropdown"
+                android:padding="15dp"
+                android:layout_weight="2">
 
-    </LinearLayout>
+            </Spinner>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -213,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Enter Date of birth here"
+                android:hint="Enter Date of birth here"
                 android:layout_weight="2"/>
 
         </LinearLayout>
@@ -236,14 +235,23 @@
 
             </TextView>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:id="@+id/image"
-                android:src="@drawable/image"
-                android:layout_weight="2">
+            <!--            <ImageView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="100dp"-->
+            <!--                android:id="@+id/image"-->
+            <!--                android:src="@drawable/image"-->
+            <!--                android:layout_weight="2">-->
 
-            </ImageView>
+            <!--            </ImageView>-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_weight="2"
+                android:src="@drawable/profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/teal"/>
 
         </LinearLayout>
 
@@ -251,65 +259,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:id="@+id/foundVisibleOptions">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
-
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Are you a police officials?"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1">
+                android:orientation="horizontal"
+                android:layout_weight="3">
 
-            </TextView>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Are you a police officials?"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    android:layout_weight="1">
 
-            <Spinner
-                android:id="@+id/choice_police"
-                android:padding="10dp"
-                android:layout_width="0dp"
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/choice_police"
+                    android:padding="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:layout_weight="2"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                android:layout_weight="2"
-                />
+                android:orientation="horizontal"
+                android:layout_weight="3">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Case No."
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
+                </TextView>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Case No."
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
+                <EditText
+                    android:id="@+id/editTextCaseNo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Enter Case No. here"
+                    android:layout_weight="2"/>
 
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextCaseNo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Enter Case No. here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -339,20 +347,27 @@
 
             </LinearLayout>
 
-
-
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submit"
+            android:id="@+id/submitPersonData"
             android:layout_margin="10dp"
             android:text="Submit Data">
 
         </Button>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitWantedData"
+            android:visibility="gone"
+            android:layout_margin="5dp"
+            android:text="Submit Data">
 
-</LinearLayout>
+        </Button>
 
-</ScrollView>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

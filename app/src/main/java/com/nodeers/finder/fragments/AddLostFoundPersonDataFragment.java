@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,8 +20,12 @@ import com.nodeers.finder.R;
 
 public class AddLostFoundPersonDataFragment extends Fragment {
 
-    private Spinner choice_l_f,choice_color,choice_police;
+    private Spinner choice_l_w,choice_color,choice_police;
     private LinearLayout invisible_layout;
+    private Button btnSubmit,btnWantedSubmit;
+
+    private EditText edtName,edtFathername,edtGFName,edtMotherName,edtDOB;
+    private String name,fName,GFname,mName,dob,img_uri;
 
     public AddLostFoundPersonDataFragment() {
         // Required empty public constructor
@@ -43,11 +49,20 @@ public class AddLostFoundPersonDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_add_lost_found_data, container, false);
+        View v = inflater.inflate(R.layout.fragment_add_lost_person_data, container, false);
 
-        choice_l_f = v.findViewById(R.id.choice_spinner_lost_found);
+        edtName = v.findViewById(R.id.editTextName);
+        edtFathername = v.findViewById(R.id.editTextFathersName);
+        edtGFName = v.findViewById(R.id.editTextGrFathersName);
+        edtMotherName = v.findViewById(R.id.editTextMothersName);
+        edtDOB = v.findViewById(R.id.editTextDob);
+
+        choice_l_w = v.findViewById(R.id.choice_spinner_lost_found);
         choice_color = v.findViewById(R.id.spnr_body_color);
         choice_police = v.findViewById(R.id.choice_police);
+
+        btnSubmit = v.findViewById(R.id.submitPersonData);
+        btnWantedSubmit = v.findViewById(R.id.submitWantedData);
 
         invisible_layout = v.findViewById(R.id.foundVisibleOptions);
 
@@ -59,10 +74,10 @@ public class AddLostFoundPersonDataFragment extends Fragment {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //set prompt message
-        choice_l_f.setPrompt("Select Lost/Found");
+        choice_l_w.setPrompt("Select Lost/Found");
 
 // Apply the adapter to the spinner
-        choice_l_f.setAdapter(adapter2);
+        choice_l_w.setAdapter(adapter2);
 
 
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getContext(),
@@ -84,17 +99,19 @@ public class AddLostFoundPersonDataFragment extends Fragment {
         choice_police.setAdapter(adapter4);
 
         //choice_l_f spinner visible edittext for founded
-        choice_l_f.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        choice_l_w.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
                         Toast.makeText(getContext(),"Lost selected",Toast.LENGTH_LONG).show();
-                        invisible_layout.setVisibility(View.INVISIBLE);
+                        invisible_layout.setVisibility(View.GONE);
                         break;
                     case 1:
-                        Toast.makeText(getContext(),"Found selected",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),"Wanted selected",Toast.LENGTH_LONG).show();
                         invisible_layout.setVisibility(View.VISIBLE);
+                        btnSubmit.setVisibility(View.GONE);
+                        btnWantedSubmit.setVisibility(View.VISIBLE);
                         break;
                 }
             }

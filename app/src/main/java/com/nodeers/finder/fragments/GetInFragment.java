@@ -46,10 +46,8 @@ public class GetInFragment extends Fragment {
     private ProgressBar progressBar;
     private LinearLayout layoutVerify;
     private TextView tv_pbar;
-
     private PinView pinView;
     private String verificationCode, mVerificationId;
-
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     private PhoneAuthCredential credential;
@@ -87,8 +85,6 @@ public class GetInFragment extends Fragment {
         progressBar = vw.findViewById(R.id.loading);
         layoutVerify = vw.findViewById(R.id.layoutVerify);
         pinView = vw.findViewById(R.id.VerifyPin);
-
-
 
         btnSendCode = vw.findViewById(R.id.send_code);
         btnVerify = vw.findViewById(R.id.btn_verify);

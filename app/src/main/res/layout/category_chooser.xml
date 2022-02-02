@@ -7,40 +7,44 @@
     android:layout_width="match_parent"
     android:layout_height="400dp">
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView7"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-
-<!--        android:gravity="center"-->
-<!--        android:text="Please select a category to continue"-->
-<!--        android:textSize="25sp"-->
-<!--        android:textStyle="italic"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/imageButtonPolice"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Select you are a police or general user to continue"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonPolice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         android:weightSum="2">
         <ImageButton
             android:id="@+id/imageButtonPolice"
-            android:layout_width="120dp"
-            android:layout_height="138dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_baseline_person_outline" />
+            android:background="@drawable/border_imgbtn"
+            android:layout_marginEnd="5dp"
+            app:srcCompat="@drawable/police_login"/>
 
         <ImageButton
             android:id="@+id/imageButtonGeneral"
-            android:layout_width="120dp"
-            android:layout_height="138dp"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/car" />
+            android:background="@drawable/border_imgbtn"
+            app:srcCompat="@drawable/general_login" />
 
     </LinearLayout>
 

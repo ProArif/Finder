@@ -4,21 +4,30 @@
         android:id="@+id/lost"
         android:title="Lost"
         android:icon="@drawable/lostl">
-
     </item>
 
     <item
         android:id="@+id/found"
         android:title="Found"
         android:icon="@drawable/found">
-
     </item>
 
     <item
         android:id="@+id/profile"
         android:title="Profile"
         android:icon="@drawable/profile">
+    </item>
 
+    <item
+        android:id="@+id/contact"
+        android:title="Contact Us"
+        android:icon="@drawable/contact">
+    </item>
+
+    <item
+        android:id="@+id/rate"
+        android:title="Rate Us"
+        android:icon="@drawable/rate">
     </item>
 
 </menu>

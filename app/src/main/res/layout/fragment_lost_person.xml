@@ -10,7 +10,7 @@
 
     <!--Grid View for displaying our data from Firebase-->
     <GridView
-        android:id="@+id/idGVCourses"
+        android:id="@+id/person_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="2" />
