@@ -16,6 +16,7 @@ import android.animation.ObjectAnimator;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -142,16 +143,10 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
 
-                    case R.id.add:
+                    case R.id.found:
                         toolbar.setTitle("Upload");
-                        if (mUser != null) {
-                    // User is signed in
-                    showDialog();
-                } else {
-                    // No user is signed in
-                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
-                    showGetInOptionsDialog();
-                }
+                        loadFragment(new FoundFragment());
+
                         return true;
 
                     case R.id.settings:
@@ -186,8 +181,15 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this,"Please login!",Toast.LENGTH_LONG).show();
                         }
                         return true;
-                    case R.id.found:
-                        loadFragment(new FoundFragment());
+                    case R.id.add:
+                        if (mUser != null) {
+                    // User is signed in
+                            showDialog();
+                        } else {
+                    // No user is signed in
+                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
+                    showGetInOptionsDialog();
+                }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                 }
@@ -280,7 +282,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                loadFragment(new AddLostFoundPersonDataFragment());
+                //loadFragment(new AddLostFoundPersonDataFragment());
+                startActivity(new Intent(MainActivity.this,AddPersonDataActivity.class));
             }
         });
 

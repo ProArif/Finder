@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    tools:context=".fragments.AddLostFoundPersonDataFragment">
+    tools:context=".AddPersonDataActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -210,6 +210,9 @@
                 android:id="@+id/editTextDob"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="Enter Date of birth here"

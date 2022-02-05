@@ -9,9 +9,9 @@
    </item>
 
     <item
-        android:id="@+id/add"
-        android:title="Upload"
-        android:icon="@drawable/upload">
+        android:id="@+id/found"
+        android:title="Found"
+        android:icon="@drawable/found">
 
     </item>
 
