@@ -238,23 +238,23 @@
 
             </TextView>
 
-            <!--            <ImageView-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="100dp"-->
-            <!--                android:id="@+id/image"-->
-            <!--                android:src="@drawable/image"-->
-            <!--                android:layout_weight="2">-->
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="150dp"
+                            android:id="@+id/image"
+                            android:src="@drawable/image"
+                            android:layout_weight="2">
 
-            <!--            </ImageView>-->
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/upload_image"
-                android:layout_width="150dp"
-                android:layout_height="120dp"
-                android:layout_weight="2"
-                android:src="@drawable/profile"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/teal"/>
+                        </ImageView>
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--                android:id="@+id/upload_image"-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="120dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:src="@drawable/profile"-->
+<!--                app:civ_border_width="2dp"-->
+<!--                app:civ_border_color="@color/teal"/>-->
 
         </LinearLayout>
 
@@ -302,7 +302,36 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Case No."
+                    android:text="Do Your superior officer knows?"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    android:layout_weight="1">
+
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/choice_superior_officer"
+                    android:padding="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:layout_weight="2"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Case No./GD No."
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:padding="10dp"
@@ -317,35 +346,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Enter Case No. here"
-                    android:layout_weight="2"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="3">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="GD No."
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:padding="10dp"
-                    android:layout_weight="1"
-                    tools:ignore="NestedWeights">
-
-                </TextView>
-
-                <EditText
-                    android:id="@+id/editTextGDNo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Enter GD No. here"
+                    android:hint="Enter Case No. or GD No. here"
                     android:layout_weight="2"/>
 
             </LinearLayout>
@@ -367,7 +368,7 @@
             android:id="@+id/submitWantedData"
             android:visibility="gone"
             android:layout_margin="5dp"
-            android:text="Submit Data">
+            android:text="Submit Wanted Data">
 
         </Button>
 

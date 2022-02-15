@@ -1,20 +1,21 @@
 {
   "project_info": {
     "project_number": "3919797075",
+    "firebase_url": "https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "finder-67a87",
     "storage_bucket": "finder-67a87.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3919797075:android:c32cd4f36a3b31bcc51fa6",
+        "mobilesdk_app_id": "1:3919797075:android:e18a5a16c8f74b4fc51fa6",
         "android_client_info": {
           "package_name": "com.nodeers.finder"
         }
       },
       "oauth_client": [
         {
-          "client_id": "3919797075-1lilh537jrbf6ui3m3fdefqn8s14mtje.apps.googleusercontent.com",
+          "client_id": "3919797075-uehsnaepdoc453ls41prv6ln6eavg3b7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.nodeers.finder",

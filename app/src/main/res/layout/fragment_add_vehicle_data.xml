@@ -102,7 +102,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextEngineNo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -147,6 +147,16 @@
             android:text="Submit Data"
             android:layout_margin="10dp"
             android:id="@+id/btnSubmitVehicleData">
+
+        </Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Data"
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:id="@+id/btnSubmitFoundVData">
 
         </Button>
 

@@ -5,12 +5,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.SearchManager;
@@ -19,7 +17,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,9 +26,7 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
@@ -39,7 +34,6 @@ import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.nodeers.finder.fragments.AddLostFoundPersonDataFragment;
 import com.nodeers.finder.fragments.AddVehicleDataFragment;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
@@ -71,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
         drawerLayout = findViewById(R.id.my_drawer_layout);
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
 
         navView = findViewById(R.id.side_nav);
         navView.setItemIconTintList(null);
@@ -112,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new LostFragment());
         BottomNavigationView btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
+
         //FloatingActionButton fab = findViewById(R.id.fab);
 
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.found:
-                        toolbar.setTitle("Upload");
+                        toolbar.setTitle("Found?");
                         loadFragment(new FoundFragment());
 
                         return true;
@@ -166,11 +163,18 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id){
                     case R.id.lost:
+                        toolbar.setTitle("Lost");
                         loadFragment(new LostFragment());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
+                    case R.id.found_side_nav:
+                        toolbar.setTitle("Found");
+                        loadFragment(new FoundFragment());
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                     case R.id.profile:
                         if (mUser != null) {
+                            toolbar.setTitle("Profile");
                             fragment = new ProfileFragment();
                             loadFragment(fragment);
                             drawerLayout.closeDrawer(GravityCompat.START);
@@ -183,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.add:
                         if (mUser != null) {
+                            toolbar.setTitle("Upload");
                     // User is signed in
                             showDialog();
                         } else {

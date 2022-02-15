@@ -122,8 +122,8 @@ public class PoliceGetInFragment extends Fragment {
         else if (phone.length() != 11){
             edtPhone.setError("Please enter your phone no. correctly");
         }
-        else if (!phone.contains("013200")){
-            edtPhone.setError("Police phone no. must contain 013200");
+        else if (!phone.contains("01320")){
+            edtPhone.setError("Police phone no. must contain 01320");
             showGeneralLogin();
         }
 

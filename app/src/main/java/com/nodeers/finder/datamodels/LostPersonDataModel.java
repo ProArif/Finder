@@ -2,13 +2,21 @@ package com.nodeers.finder.datamodels;
 
 public class LostPersonDataModel {
 
-    private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl;
+    private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl,case_num;
 
     public LostPersonDataModel() {
     }
 
+    public String getCase_num() {
+        return case_num;
+    }
+
+    public void setCase_num(String case_num) {
+        this.case_num = case_num;
+    }
+
     public LostPersonDataModel(String name, String father_name,
-                               String grandf_name, String mother_name,String body_color, String dob, String imgUrl) {
+                               String grandf_name, String mother_name, String body_color, String dob, String imgUrl, String case_no) {
 
         this.name = name;
         this.father_name = father_name;
@@ -17,8 +25,15 @@ public class LostPersonDataModel {
         this.body_color = body_color;
         this.dob = dob;
         this.imgUrl = imgUrl;
+        this.case_num = case_no;
+
     }
 
+    public LostPersonDataModel(String name, String father_name, String dob) {
+        this.name = name;
+        this.father_name = father_name;
+        this.dob = dob;
+    }
 
     public String getName() {
         return name;

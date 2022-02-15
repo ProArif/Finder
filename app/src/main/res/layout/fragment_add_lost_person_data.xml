@@ -290,6 +290,35 @@
 
             </LinearLayout>
 
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="3">
+
+                    <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Do Your superior officer knows?"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    android:layout_weight="1">
+
+                    </TextView>
+
+                    <Spinner
+                    android:id="@+id/choice_superior_officer"
+                    android:padding="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:layout_weight="2"
+
+                    />
+
+                </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -299,7 +328,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Case No."
+                    android:text="Case No./GD No."
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:padding="10dp"
@@ -314,38 +343,11 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Enter Case No. here"
+                    android:hint="Enter Case No. or GD No. here"
                     android:layout_weight="2"/>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="3">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="GD No."
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:padding="10dp"
-                    android:layout_weight="1"
-                    tools:ignore="NestedWeights">
-
-                </TextView>
-
-                <EditText
-                    android:id="@+id/editTextGDNo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Enter GD No. here"
-                    android:layout_weight="2"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -364,7 +366,7 @@
             android:id="@+id/submitWantedData"
             android:visibility="gone"
             android:layout_margin="5dp"
-            android:text="Submit Data">
+            android:text="Submit Wanted Data">
 
         </Button>
 

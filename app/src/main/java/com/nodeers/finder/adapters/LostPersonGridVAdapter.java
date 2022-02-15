@@ -42,8 +42,8 @@ public class LostPersonGridVAdapter extends ArrayAdapter<LostPersonDataModel> {
         LostPersonDataModel dataModal = getItem(position);
 
         // initializing our UI components of list view item.
-        TextView nameTV = listitemView.findViewById(R.id.idTVtext);
-        ImageView courseIV = listitemView.findViewById(R.id.idIVimage);
+        TextView nameTV = listitemView.findViewById(R.id.tv_name);
+        ImageView person_img = listitemView.findViewById(R.id.person_img);
 
         // after initializing our items we are
         // setting data to our view.
@@ -52,7 +52,7 @@ public class LostPersonGridVAdapter extends ArrayAdapter<LostPersonDataModel> {
 
         // in below line we are using Picasso to load image
         // from URL in our Image VIew.
-        Picasso.get().load(dataModal.getImgUrl()).into(courseIV);
+        Picasso.get().load(dataModal.getImgUrl()).into(person_img);
 
         // below line is use to add item
         // click listener for our item of list view.
@@ -71,5 +71,8 @@ public class LostPersonGridVAdapter extends ArrayAdapter<LostPersonDataModel> {
         super(context, resource, textViewResourceId);
     }
 
-
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
 }

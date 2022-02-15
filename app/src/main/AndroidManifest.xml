@@ -20,7 +20,10 @@
         android:theme="@style/Theme.Finder" >
         <activity
             android:name=".AddPersonDataActivity"
-            android:exported="false" />
+            android:exported="false">
+
+
+        </activity>
         <activity
             android:name=".LogOutActivity"
             android:exported="false" />
@@ -33,7 +36,8 @@
         </activity>
         <activity
             android:name=".Splash"
-            android:exported="true" >
+            android:exported="true"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
