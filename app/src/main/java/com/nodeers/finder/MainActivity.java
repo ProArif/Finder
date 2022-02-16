@@ -34,7 +34,6 @@ import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.nodeers.finder.fragments.AddVehicleDataFragment;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
@@ -287,7 +286,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                //loadFragment(new AddLostFoundPersonDataFragment());
                 startActivity(new Intent(MainActivity.this,AddPersonDataActivity.class));
             }
         });
@@ -296,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                loadFragment(new AddVehicleDataFragment());
+                startActivity(new Intent(MainActivity.this,AddVehicleDataActivity.class));
             }
         });
 

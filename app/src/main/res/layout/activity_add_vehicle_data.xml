@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.AddVehicleDataFragment">
+    tools:context=".AddVehicleDataActivity">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Enter Reg. No. here"
+                android:hint="Enter Reg. No. here"
                 android:layout_weight="2"/>
 
         </LinearLayout>
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Enter Engine No. here"
+                android:hint="Enter Engine No. here"
                 android:layout_weight="2"/>
 
         </LinearLayout>
@@ -153,7 +153,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Data"
+            android:text="Submit Found Data"
             android:visibility="gone"
             android:layout_margin="10dp"
             android:id="@+id/btnSubmitFoundVData">
@@ -163,4 +163,6 @@
 
     </LinearLayout>
 
-</FrameLayout>
+
+
+</ScrollView>

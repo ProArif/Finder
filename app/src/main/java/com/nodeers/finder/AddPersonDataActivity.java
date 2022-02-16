@@ -41,8 +41,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,7 +50,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.nodeers.finder.datamodels.LostPersonDataModel;
@@ -75,8 +72,6 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
     private EditText edtName,edtFathername,edtGFName,edtMotherName,edtDOB,edtCaseNo;
     private String name,fName,GFname,mName,dob,img_uri,body_color,uId,case_no;
-
-    private CircleImageView upload_img;
     private ImageView img_upload;
     private Uri img;
 
@@ -91,6 +86,8 @@ public class AddPersonDataActivity extends AppCompatActivity {
     private Dialog dialog;
 
     private ActivityResultLauncher<Intent> chooseImageActivityResultLauncher;
+
+    private boolean clicked_img = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,6 +223,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
             }
         });
 
+
         img_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -350,6 +348,10 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
     private void uploadToStorage(){
 
+        if (!clicked_img){
+            Toast.makeText(this,"Please select an image",Toast.LENGTH_LONG).show();
+        }
+        else {
             ProgressDialog progressDialog
                     = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
@@ -364,26 +366,27 @@ public class AddPersonDataActivity extends AppCompatActivity {
             StorageReference ref = storageReference.child(uId +"."+UUID.randomUUID());
 
             ref.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        dataModel.setImgUrl(String.valueOf(uri));
-                        progressDialog.dismiss();
-                        save_data();
-                        empty_fields();
-                        Blink_and_showDialog();
-                    }
-                });
-            }
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            dataModel.setImgUrl(String.valueOf(uri));
+                            progressDialog.dismiss();
+                            save_data();
+                            empty_fields();
+                            Blink_and_showDialog();
+                        }
+                    });
+                }
             }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressDialog.dismiss();
-                Log.e("failed upld",e.getMessage());
-            }
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressDialog.dismiss();
+                    Log.e("failed upld",e.getMessage());
+                }
             });
+        }
 
 
 //        Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -492,7 +495,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             // There are no request codes
-
+                            clicked_img = true;
                             Intent data = result.getData();
                             Bundle extras =data.getExtras();
                             if (data.getExtras() == null){
@@ -504,6 +507,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
                                 Log.e("Image URI",img_uri);
 
                             }else if (extras != null){
+                                clicked_img = true;
                                 //img_uri = extras.getString("data");
                                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                                 //upload_img.setImageBitmap(imageBitmap);

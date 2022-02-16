@@ -27,6 +27,11 @@
         <item>Wanted</item>
     </string-array>
 
+    <string-array name="choice_array3">
+        <item>Lost</item>
+        <item>Found</item>
+    </string-array>
+
     <string-array name="choice_color">
         <item>White</item>
         <item>Black</item>
