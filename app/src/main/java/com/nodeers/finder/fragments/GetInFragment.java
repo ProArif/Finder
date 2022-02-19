@@ -1,5 +1,6 @@
 package com.nodeers.finder.fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.chaos.view.PinView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
@@ -33,7 +36,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.nodeers.finder.R;
+import com.nodeers.finder.datamodels.UsersData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -51,6 +59,14 @@ public class GetInFragment extends Fragment {
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     private PhoneAuthCredential credential;
+
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference dbRef;
+    private FirebaseUser mUser;
+    private StorageReference storageReference;
+    private String uId;
+    private Dialog dialog;
+    private UsersData data = new UsersData();
 
     public GetInFragment() {
         // Required empty public constructor
@@ -74,6 +90,15 @@ public class GetInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//        mUser = FirebaseAuth.getInstance().getCurrentUser();
+//        uId = mUser.getUid();
+
+        mDatabase = FirebaseDatabase.getInstance("https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        dbRef = mDatabase.getReference("users");
+
+        //storageReference = FirebaseStorage.getInstance().getReference("lost_vehicles");
+
         // Inflate the layout for this fragment
         View vw = inflater.inflate(R.layout.fragment_get_in, container, false);
 
@@ -114,6 +139,41 @@ public class GetInFragment extends Fragment {
         });
 
         return vw ;
+    }
+
+    private void save_user(String userId){
+        showProgressBAr();
+        data = new UsersData(data.getName(), data.getImgUrl(),data.getPhn(), data.getmUserId(), data.getUserType());
+
+        dbRef.child(userId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                hideProgressBar();
+                Fragment fragment = new ProfileFragment();
+                loadFragment(fragment);
+
+                Toast.makeText(getContext(),"Profile Created",Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                hideProgressBar();
+                Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    private void showProgressBAr(){
+        dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_wait);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void hideProgressBar(){
+        dialog.dismiss();
     }
 
     private void sendOTP() {
@@ -184,6 +244,8 @@ public class GetInFragment extends Fragment {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
 
+        //set users phone number
+        data.setPhn(phone);
 
     }
 
@@ -208,13 +270,17 @@ public class GetInFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("signin", "signInWithCredential:success");
-                            Toast.makeText(getContext(),"Sign in completed",Toast.LENGTH_LONG).show();
+                            //Log.d("signin", "signInWithCredential:success");
+                            //Toast.makeText(getContext(),"Sign in completed",Toast.LENGTH_LONG).show();
 
-                            Fragment fragment = new ProfileFragment();
-                            loadFragment(fragment);
-
-                            FirebaseUser user = task.getResult().getUser();
+                            data.setName("Your Name");
+                            data.setUserType("general");
+                            mUser = task.getResult().getUser();
+                            if (mUser != null){
+                                uId = mUser.getUid();
+                                data.setmUserId(uId);
+                                save_user(uId);
+                            }
 
                             // Update UI
                         } else {

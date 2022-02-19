@@ -59,7 +59,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
-import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class AddPersonDataActivity extends AppCompatActivity {
 

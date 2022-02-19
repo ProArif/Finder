@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profile"
+        android:title="My Account"
+        android:icon="@drawable/profile">
+    </item>
+
+    <item
+        android:id="@+id/add"
+        android:title="Upload"
+        android:icon="@drawable/upload">
+    </item>
+
     <item
         android:id="@+id/lost"
         android:title="Lost"
@@ -10,18 +23,6 @@
         android:id="@+id/found_side_nav"
         android:title="Found"
         android:icon="@drawable/found">
-    </item>
-
-    <item
-        android:id="@+id/add"
-        android:title="Upload"
-        android:icon="@drawable/upload">
-    </item>
-
-    <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/profile">
     </item>
 
     <item
