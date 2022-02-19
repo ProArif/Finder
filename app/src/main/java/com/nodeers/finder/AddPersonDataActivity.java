@@ -68,7 +68,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
     private Spinner choice_police;
     private Spinner choice_superior;
     private LinearLayout invisible_layout;
-    private Button btnSubmit,btnWantedSubmit;
+    private Button btnSubmit,btnWantedSubmit,btnFoundSubmit;
 
     private EditText edtName,edtFathername,edtGFName,edtMotherName,edtDOB,edtCaseNo;
     private String name,fName,GFname,mName,dob,img_uri,body_color,uId,case_no;
@@ -123,6 +123,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
         btnSubmit = findViewById(R.id.submitPersonData);
         btnWantedSubmit = findViewById(R.id.submitWantedData);
+        btnFoundSubmit = findViewById(R.id.submitFoundData);
 
         invisible_layout = findViewById(R.id.foundVisibleOptions);
 
@@ -145,6 +146,13 @@ public class AddPersonDataActivity extends AppCompatActivity {
                         btnSubmit.setVisibility(View.GONE);
                         btnWantedSubmit.setVisibility(View.VISIBLE);
 
+                        break;
+
+                    case 2:
+                        invisible_layout.setVisibility(View.GONE);
+                        btnSubmit.setVisibility(View.GONE);
+                        btnWantedSubmit.setVisibility(View.GONE);
+                        btnFoundSubmit.setVisibility(View.VISIBLE);
                         break;
                 }
             }
@@ -289,6 +297,31 @@ public class AddPersonDataActivity extends AppCompatActivity {
                     Log.e("firebase", "entered wanted else block");
                 }
 
+            }
+        });
+
+        btnFoundSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initialize_data();
+                if (name.isEmpty()){
+                    edtName.setError("Please enter your name");
+                }
+                else if (fName.isEmpty()){
+                    edtFathername.setError("Please enter your fathers name");
+                }
+                else if (dob.isEmpty()){
+                    edtDOB.setError("Please select your Date of Birth");
+                }
+                else{
+                    storageReference = FirebaseStorage.getInstance().getReference("found_entities");
+                    dbRef = store_data.getReference("found_entities");
+
+                    uploadToStorage();
+                    //Toast.makeText(AddPersonDataActivity.this,"entered else block",Toast.LENGTH_LONG).show();
+                    Log.e("firebase", "entered else block");
+
+                }
             }
         });
 

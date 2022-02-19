@@ -372,6 +372,16 @@
 
         </Button>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitFoundData"
+            android:visibility="gone"
+            android:layout_margin="5dp"
+            android:text="Submit Found Data">
+
+        </Button>
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

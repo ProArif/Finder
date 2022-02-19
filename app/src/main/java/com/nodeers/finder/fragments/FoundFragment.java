@@ -2,48 +2,46 @@ package com.nodeers.finder.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nodeers.finder.R;
+import com.nodeers.finder.adapters.LostPersonGridVAdapter;
+import com.nodeers.finder.datamodels.LostPersonDataModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FoundFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class FoundFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private GridView found_gv;
+    private ArrayList<LostPersonDataModel> dataModel_lost_person ;
+    private FirebaseDatabase store_data;
+    private DatabaseReference dbRef;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private LostPersonGridVAdapter adapter;
+
 
     public FoundFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FoundFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static FoundFragment newInstance(String param1, String param2) {
         FoundFragment fragment = new FoundFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,16 +49,55 @@ public class FoundFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_found, container, false);
+        View lay = inflater.inflate(R.layout.fragment_found, container, false);
+        //initialize variables for grid data
+        found_gv = lay.findViewById(R.id.found_grid);
+        dataModel_lost_person = new ArrayList<>();
+
+        adapter = new LostPersonGridVAdapter(getContext(),dataModel_lost_person);
+        found_gv.setAdapter(adapter);
+
+        // initializing our variable for firebase
+        // realtime db and getting its instance.
+        store_data = FirebaseDatabase.getInstance("https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        dbRef = store_data.getReference("found_entities");
+
+        loadData();
+
+        return lay;
+    }
+
+    private void loadData() {
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dataModel_lost_person.clear();
+
+                for (DataSnapshot dsnapshot : snapshot.getChildren()) {
+
+                    LostPersonDataModel data = dsnapshot.getValue(LostPersonDataModel.class);
+                    data.setName(dsnapshot.child("name").getValue().toString());
+                    data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
+                    Log.e("entered snapshot",data.getName());
+
+                    dataModel_lost_person.add(data);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Retrieval Error",error.getMessage());
+            }
+        });
+
     }
 }

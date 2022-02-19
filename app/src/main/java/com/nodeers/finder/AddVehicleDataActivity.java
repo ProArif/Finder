@@ -174,8 +174,8 @@ public class AddVehicleDataActivity extends AppCompatActivity {
                 }
                 else{
 
-                    storageReference = FirebaseStorage.getInstance().getReference("found_vehicles");
-                    dbRef = mDatabase.getReference("found_vehicles");
+                    storageReference = FirebaseStorage.getInstance().getReference("found_entities");
+                    dbRef = mDatabase.getReference("found_entities");
 
                     uploadToStorage();
                 }

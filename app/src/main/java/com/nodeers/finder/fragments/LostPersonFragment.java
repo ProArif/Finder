@@ -89,6 +89,7 @@ public class LostPersonFragment extends Fragment {
                     Log.e("entered snapshot",data.getName());
 
                     dataModel_lost_person.add(data);
+
                 }
                 adapter.notifyDataSetChanged();
             }
