@@ -9,6 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.nodeers.finder.fragments.LostPersonFragment;
 import com.nodeers.finder.fragments.LostVehicleFragment;
+import com.nodeers.finder.fragments.WantedFragment;
 
 public class LostAdapter extends FragmentStateAdapter {
 
@@ -32,6 +33,8 @@ public class LostAdapter extends FragmentStateAdapter {
                 return new LostPersonFragment();
             case 1:
                 return new LostVehicleFragment();
+            case 2:
+                return new WantedFragment();
 
         }
 
@@ -40,6 +43,6 @@ public class LostAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }
