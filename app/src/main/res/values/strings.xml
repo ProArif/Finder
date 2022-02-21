@@ -28,6 +28,12 @@
         <item>Found</item>
     </string-array>
 
+    <string-array name="search_date_choices">
+        <item>By Week</item>
+        <item>By Month</item>
+        <item>Input Date</item>
+    </string-array>
+
     <string-array name="choice_array3">
         <item>Lost</item>
         <item>Found</item>
@@ -62,5 +68,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="search">Search</string>
 
 </resources>

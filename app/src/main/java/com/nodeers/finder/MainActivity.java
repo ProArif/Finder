@@ -41,6 +41,8 @@ import com.nodeers.finder.fragments.PoliceGetInFragment;
 import com.nodeers.finder.fragments.ProfileFragment;
 import com.nodeers.finder.fragments.SettingsFragment;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -108,22 +110,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
 
-        //FloatingActionButton fab = findViewById(R.id.fab);
-
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mUser != null) {
-//                    // User is signed in
-//                    showDialog();
-//                } else {
-//                    // No user is signed in
-//                    Toast.makeText(MainActivity.this,"Please login to add a post",Toast.LENGTH_LONG).show();
-//                }
-//
-//            }
-//        });
-        
         btmNav.setBackground(null);
         btmNav.setItemIconTintList(null);
         btmNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -202,16 +188,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
 
-
             return true;
+        }
+        if (item.getItemId() == R.id.search){
+            startActivity(new Intent(this,SearchResultsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -221,13 +209,13 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
 
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+//        // Associate searchable configuration with the SearchView
+//        SearchManager searchManager =
+//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView =
+//                (SearchView) menu.findItem(R.id.search).getActionView();
+//        searchView.setSearchableInfo(
+//                searchManager.getSearchableInfo(getComponentName()));
 
 
         return true;

@@ -11,12 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.nodeers.finder.R;
-import com.nodeers.finder.datamodels.LostPersonDataModel;
 import com.nodeers.finder.datamodels.VehicleDataModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LostVehicleGridAdapter extends ArrayAdapter<VehicleDataModel> {
     public LostVehicleGridAdapter(@NonNull Context context, int resource) {
@@ -45,7 +43,7 @@ public class LostVehicleGridAdapter extends ArrayAdapter<VehicleDataModel> {
         // after initializing our items we are
         // setting data to our view.
         // below line is use to set data to our text view.
-        nameTV.setText(dataModal.getEngineNo());
+        nameTV.setText(dataModal.getName());
 
         // in below line we are using Picasso to load image
         // from URL in our Image VIew.
@@ -58,7 +56,7 @@ public class LostVehicleGridAdapter extends ArrayAdapter<VehicleDataModel> {
             public void onClick(View v) {
                 // on the item click on our list view.
                 // we are displaying a toast message.
-                Toast.makeText(getContext(), "Item clicked is : " + dataModal.getEngineNo(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Item clicked is : " + dataModal.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         return listitemView;

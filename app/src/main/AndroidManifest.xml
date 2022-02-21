@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name=".LogOutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true"/>
         <activity
             android:name=".SearchResultsActivity"
             android:exported="false">

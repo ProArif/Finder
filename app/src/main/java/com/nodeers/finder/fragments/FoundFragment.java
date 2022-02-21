@@ -84,11 +84,14 @@ public class FoundFragment extends Fragment {
                 for (DataSnapshot dsnapshot : snapshot.getChildren()) {
 
                     LostPersonDataModel data = dsnapshot.getValue(LostPersonDataModel.class);
-                    data.setName(dsnapshot.child("name").getValue().toString());
-                    data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
-                    Log.e("entered snapshot",data.getName());
+                    if (data != null) {
+                        data.setName(dsnapshot.child("name").getValue().toString());
+                        data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
+                        Log.e("entered snapshot",data.getName());
 
-                    dataModel_lost_person.add(data);
+                        dataModel_lost_person.add(data);
+                    }
+
                 }
                 adapter.notifyDataSetChanged();
             }

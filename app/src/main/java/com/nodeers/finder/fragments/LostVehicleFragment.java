@@ -17,9 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nodeers.finder.R;
-import com.nodeers.finder.adapters.LostPersonGridVAdapter;
 import com.nodeers.finder.adapters.LostVehicleGridAdapter;
-import com.nodeers.finder.datamodels.LostPersonDataModel;
 import com.nodeers.finder.datamodels.VehicleDataModel;
 
 import java.util.ArrayList;
@@ -88,7 +86,7 @@ public class LostVehicleFragment extends Fragment {
                 for (DataSnapshot dsnapshot : snapshot.getChildren()) {
 
                     VehicleDataModel data = dsnapshot.getValue(VehicleDataModel.class);
-                    data.setEngineNo(dsnapshot.child("engineNo").getValue().toString());
+                    data.setName(dsnapshot.child("name").getValue().toString());
                     data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
 
                     dataModel.add(data);

@@ -55,9 +55,12 @@ import com.google.firebase.storage.UploadTask;
 import com.nodeers.finder.datamodels.LostPersonDataModel;
 import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 
@@ -88,6 +91,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> chooseImageActivityResultLauncher;
 
     private boolean clicked_img = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -330,17 +334,21 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
 
     private void save_data(){
+        Date netDate = new Date(); // current time from here
+        SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        String time =  sfd.format(netDate);
+        dataModel.setDate(time);
 
         showProgressBAr();
-        LostPersonDataModel dataModel1 = new LostPersonDataModel(dataModel.getName(),dataModel.getFather_name()
+        dataModel = new LostPersonDataModel(dataModel.getName(),dataModel.getFather_name()
                 ,dataModel.getGrandf_name(), dataModel.getMother_name(),dataModel.getBody_color(),dataModel.getDob()
-                ,dataModel.getImgUrl(),dataModel.getCase_num());
+                ,dataModel.getImgUrl(),dataModel.getCase_num(),dataModel.getDate());
 
         if (mUser != null){
             Log.e("firebase", "entered user not null");
-            Log.e("firebase", dataModel1.getName() + dataModel1.getBody_color());
+            Log.e("firebase", dataModel.getName() + dataModel.getBody_color());
 
-            dbRef.push().setValue(dataModel1).addOnCompleteListener(new OnCompleteListener<Void>() {
+            dbRef.push().setValue(dataModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){

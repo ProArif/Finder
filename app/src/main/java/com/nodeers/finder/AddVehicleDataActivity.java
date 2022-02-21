@@ -54,8 +54,11 @@ import com.nodeers.finder.datamodels.VehicleDataModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class AddVehicleDataActivity extends AppCompatActivity {
@@ -68,7 +71,7 @@ public class AddVehicleDataActivity extends AppCompatActivity {
     private Uri img;
     private Dialog dialog;
 
-    private VehicleDataModel dataModel = new VehicleDataModel();;
+    private VehicleDataModel dataModel = new VehicleDataModel();
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference dbRef;
@@ -190,7 +193,7 @@ public class AddVehicleDataActivity extends AppCompatActivity {
         engineNo = edtEngineNo.getText().toString().trim();
 
         dataModel.setRegNo(regNo);
-        dataModel.setEngineNo(engineNo);
+        dataModel.setName(engineNo);
     }
 
     private void uploadToStorage() {
@@ -251,8 +254,13 @@ public class AddVehicleDataActivity extends AppCompatActivity {
 
     private void save_data(){
 
+        Date netDate = new Date(); // current time from here
+        SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        String time =  sfd.format(netDate);
+        dataModel.setDate(time);
+
         showProgressBAr();
-        dataModel = new VehicleDataModel(dataModel.getRegNo(),dataModel.getEngineNo(),dataModel.getImgUrl());
+        dataModel = new VehicleDataModel(dataModel.getRegNo(),dataModel.getName(),dataModel.getImgUrl(),dataModel.getDate());
 
         if (mUser != null){
             Log.e("firebase", "entered user not null");
