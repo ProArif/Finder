@@ -335,7 +335,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
     private void save_data(){
         Date netDate = new Date(); // current time from here
-        SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String time =  sfd.format(netDate);
         dataModel.setDate(time);
 
@@ -428,76 +428,6 @@ public class AddPersonDataActivity extends AppCompatActivity {
                 }
             });
         }
-
-
-//        Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//            @Override
-//
-//            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                if (!task.isSuccessful()){
-//                    throw task.getException();
-//                }
-//
-//                return storageReference.getDownloadUrl();
-//            }
-//        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Uri> task) {
-//                if (task.isSuccessful()) {
-//                    Uri downloadUri = task.getResult();
-//                    dataModel.setImgUrl(String.valueOf(downloadUri));
-//                    progressDialog.dismiss();
-//                    save_data();
-//                    empty_fields();
-//                    Blink_and_showDialog();
-//
-//                } else {
-//                    progressDialog.dismiss();
-//                    Log.e("failed upld",task.getException().getMessage());
-//                }
-//            }
-//        });
-
-//            storageReference.child(uId).child(UUID.randomUUID().toString()).putBytes(data)
-//                    .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                            if (task.isSuccessful()){
-//                                //String uri = String.valueOf(task.getResult());
-//                                String uri = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
-//
-//                                dataModel.setImgUrl(uri);
-//                                progressDialog.dismiss();
-//
-//                                save_data();
-//                                empty_fields();
-//                                Blink_and_showDialog();
-//                            }
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Log.e("Faild upld",e.getMessage());
-//                    Toast.makeText(AddPersonDataActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    progressDialog.dismiss();
-//                    empty_fields();
-//                }
-//            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                     //Progress Listener for loading
-//                        // percentage on the dialog box
-//                            double progress
-//                                    = (100.0
-//                                    * snapshot.getBytesTransferred()
-//                                    / snapshot.getTotalByteCount());
-//                            progressDialog.setMessage(
-//                                    "Uploaded "
-//                                            + (int)progress + "%");
-//                        }
-//
-//            });
-
 
     }
 

@@ -255,7 +255,7 @@ public class AddVehicleDataActivity extends AppCompatActivity {
     private void save_data(){
 
         Date netDate = new Date(); // current time from here
-        SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         String time =  sfd.format(netDate);
         dataModel.setDate(time);
 

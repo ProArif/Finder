@@ -28,7 +28,15 @@
         <item>Found</item>
     </string-array>
 
+    <string-array name="choice_category_search">
+        <item>Select Any</item>
+        <item>Lost</item>
+        <item>Wanted</item>
+        <item>Found</item>
+    </string-array>
+
     <string-array name="search_date_choices">
+        <item>None</item>
         <item>By Week</item>
         <item>By Month</item>
         <item>Input Date</item>
