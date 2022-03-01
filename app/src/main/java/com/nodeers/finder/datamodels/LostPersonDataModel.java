@@ -1,19 +1,17 @@
 package com.nodeers.finder.datamodels;
 
+import java.util.Date;
+
 public class LostPersonDataModel {
 
-    private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl,case_num, date;
+    private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl,case_num;
+
+    private long date;
 
     public LostPersonDataModel() {
     }
 
-    public String getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getCase_num() {
         return case_num;
@@ -24,7 +22,7 @@ public class LostPersonDataModel {
     }
 
     public LostPersonDataModel(String name, String father_name,String grandf_name, String mother_name,
-                               String body_color, String dob, String imgUrl, String case_no,String date) {
+                               String body_color, String dob, String imgUrl, String case_no,long date) {
 
         this.name = name;
         this.father_name = father_name;
@@ -42,6 +40,10 @@ public class LostPersonDataModel {
         this.name = name;
         this.father_name = father_name;
         this.dob = dob;
+    }
+
+    public long getDate() {
+        return date;
     }
 
     public String getName() {

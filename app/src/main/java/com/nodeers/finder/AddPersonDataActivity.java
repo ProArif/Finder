@@ -92,11 +92,17 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
     private boolean clicked_img = false;
 
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+    private Date date;
+    private Calendar calendar = Calendar.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person_data);
+
+
 
         resultLauncher();
 
@@ -334,15 +340,16 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
 
     private void save_data(){
-        Date netDate = new Date(); // current time from here
-        SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        String time =  sfd.format(netDate);
-        dataModel.setDate(time);
+
+        date = calendar.getTime();
+        //String dates  = String.valueOf(date);
+
+        Log.e("saved date", String.valueOf(date));
 
         showProgressBAr();
         dataModel = new LostPersonDataModel(dataModel.getName(),dataModel.getFather_name()
                 ,dataModel.getGrandf_name(), dataModel.getMother_name(),dataModel.getBody_color(),dataModel.getDob()
-                ,dataModel.getImgUrl(),dataModel.getCase_num(),dataModel.getDate());
+                ,dataModel.getImgUrl(),dataModel.getCase_num(),date.getTime());
 
         if (mUser != null){
             Log.e("firebase", "entered user not null");

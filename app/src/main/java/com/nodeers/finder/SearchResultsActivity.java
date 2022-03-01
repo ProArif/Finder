@@ -42,7 +42,8 @@ public class SearchResultsActivity extends AppCompatActivity {
     private Button btnSearch;
     private Spinner category_choice, date_choice,p_v_choice;
 
-    private String searchTxt,selectedDate, startDate,endDate;
+    private String searchTxt;
+    private Date selectedDate, startDate,endDate;
     private String category = "person";
     private GridView search_gv;
 
@@ -51,7 +52,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private final FirebaseDatabase mDb = FirebaseDatabase.getInstance("https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app/");
     private LostPersonGridVAdapter adapter;
     private ArrayList<LostPersonDataModel> dataModel_search ;
-    private Calendar cal = GregorianCalendar.getInstance();
+    private Calendar calendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +76,8 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         //btnSearch.setVisibility(View.INVISIBLE);
 
-        Date netDate = new Date(); // current time from here
-        SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        startDate =  sfd.format(netDate);
+
+        startDate =  calendar.getTime();
 
         setAdaptersSearch();
 
@@ -147,15 +147,16 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                         break;
                     case 1:
-                        cal.setTime(new Date());
-                        cal.add(Calendar.DAY_OF_YEAR, -6);
-                        Date weekBeforeDate = cal.getTime();
-                        SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-                        endDate =  sfd.format(weekBeforeDate);
 
-                        query = dbRef.orderByChild("date").startAt(startDate).endAt(endDate);
-                        Log.e("query",startDate);
-                        Log.e("query date",endDate);
+                        btnSearch.setEnabled(false);
+                        calendar.setTime(new Date());
+                        calendar.add(Calendar.DAY_OF_YEAR, -6);
+                        endDate = calendar.getTime();
+
+                        query = dbRef.orderByChild("date").startAt(endDate.getTime()).endAt(startDate.getTime());
+                        load_data(query);
+                        Log.e("query", String.valueOf(startDate));
+                        Log.e("query date", String.valueOf(endDate));
 
                         Toast.makeText(SearchResultsActivity.this, "By Week", Toast.LENGTH_SHORT).show();
                         break;
@@ -171,7 +172,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                query = dbRef.orderByChild(startDate);
+                //query = dbRef.orderByChild(startDate.getTime());
             }
         });
 
@@ -201,34 +202,34 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                 dataModel_search.clear();
 
-                for (DataSnapshot snapshot1: snapshot.getChildren()){
-                    LostPersonDataModel data = snapshot1.getValue(LostPersonDataModel.class);
-                    if (data != null) {
-                        data.setName(snapshot1.child("name").getValue().toString());
-                        data.setImgUrl(snapshot1.child("imgUrl").getValue().toString());
-                        Log.e("entered search snapshot",data.getName());
+                if (snapshot.exists()){
+                    for (DataSnapshot snapshot1: snapshot.getChildren()) {
+                        LostPersonDataModel data = snapshot1.getValue(LostPersonDataModel.class);
+                        if (data != null) {
+                            data.setName(snapshot1.child("name").getValue().toString());
+                            data.setImgUrl(snapshot1.child("imgUrl").getValue().toString());
+                            Log.e("entered search snapshot", data.getName());
 
-                        dataModel_search.add(data);
+                            dataModel_search.add(data);
+                        }
                     }
+                }else {
+                    // create an alert builder
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchResultsActivity.this);
+                    builder.setMessage("No Data Found Matching Your Search!");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                        });
 
-//                    if (dataModel_search.isEmpty()) {
-//                        // create an alert builder
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(SearchResultsActivity.this);
-//                        builder.setMessage("No Data Found Matching Your Search!");
-//                        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//
-//                        // create and show the alert dialog
-//                        AlertDialog dialog = builder.create();
-//                        dialog.setCancelable(true);
-//                        dialog.show();
-//                    }
-
+                    // create and show the alert dialog
+                    AlertDialog dialog = builder.create();
+                    dialog.setCancelable(true);
+                    dialog.show();
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -249,8 +250,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                     String sDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
 
                             edtSearchTxt.setText(sDate);
-                            selectedDate = sDate;
-                            Log.e("DOB selected",selectedDate);
+                            selectedDate = cal.getTime();
+                            Log.e("DOB selected", String.valueOf(selectedDate));
 
 
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
