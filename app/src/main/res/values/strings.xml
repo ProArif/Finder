@@ -30,9 +30,10 @@
 
     <string-array name="choice_category_search">
         <item>Select Any</item>
-        <item>Lost</item>
+        <item>Lost Persons</item>
         <item>Wanted</item>
         <item>Found</item>
+        <item>Lost Vehicles</item>
     </string-array>
 
     <string-array name="search_date_choices">

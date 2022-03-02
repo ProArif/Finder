@@ -4,14 +4,21 @@ import java.util.Date;
 
 public class LostPersonDataModel {
 
-    private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl,case_num;
+    private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl,case_num,formattedDate;
 
     private long date;
+
 
     public LostPersonDataModel() {
     }
 
+    public String getFormattedDate() {
+        return formattedDate;
+    }
 
+    public void setFormattedDate(String formattedDate) {
+        this.formattedDate = formattedDate;
+    }
 
     public String getCase_num() {
         return case_num;
@@ -22,7 +29,7 @@ public class LostPersonDataModel {
     }
 
     public LostPersonDataModel(String name, String father_name,String grandf_name, String mother_name,
-                               String body_color, String dob, String imgUrl, String case_no,long date) {
+                               String body_color, String dob, String imgUrl, String case_no,long date,String formattedDate) {
 
         this.name = name;
         this.father_name = father_name;
@@ -33,6 +40,7 @@ public class LostPersonDataModel {
         this.imgUrl = imgUrl;
         this.case_num = case_no;
         this.date = date;
+        this.formattedDate = formattedDate;
 
     }
 

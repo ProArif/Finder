@@ -36,14 +36,15 @@ import java.util.Locale;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
-    private int click = 0;
+    private int click;
 
     private EditText edtSearchTxt;
     private Button btnSearch;
     private Spinner category_choice, date_choice,p_v_choice;
 
-    private String searchTxt;
+    private String searchTxt, formattedDate ;
     private Date selectedDate, startDate,endDate;
+    private long selectedTimestamp;
     private String category = "person";
     private GridView search_gv;
 
@@ -53,7 +54,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private LostPersonGridVAdapter adapter;
     private ArrayList<LostPersonDataModel> dataModel_search ;
     private Calendar calendar = Calendar.getInstance();
-
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,23 +110,28 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:
-                        click = 0;
+
                         Toast.makeText(SearchResultsActivity.this,"Please select any choices",Toast.LENGTH_LONG).show();
                         break;
                     case 1:
-                        click = 1;
+
                         dbRef = mDb.getReference("lost persons");
 
                         break;
                     case 2:
-                        click = 2;
+
                         dbRef = mDb.getReference("wanted_persons");
 
 
                         break;
                     case 3:
-                        click = 3;
+
                         dbRef = mDb.getReference("found_entities");
+
+                        break;
+                    case 4:
+
+                        dbRef = mDb.getReference("lost vehicles");
 
                         break;
                 }
@@ -143,7 +149,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:
-
+                        btnSearch.setEnabled(true);
 
                         break;
                     case 1:
@@ -161,11 +167,24 @@ public class SearchResultsActivity extends AppCompatActivity {
                         Toast.makeText(SearchResultsActivity.this, "By Week", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
+                        btnSearch.setEnabled(false);
+                        calendar.setTime(new Date());
+                        calendar.add(Calendar.MONTH, -1);
+                        endDate = calendar.getTime();
+                        query = dbRef.orderByChild("date").startAt(endDate.getTime()).endAt(startDate.getTime());
+                        load_data(query);
                         Toast.makeText(SearchResultsActivity.this, "By Month", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
+                        btnSearch.setEnabled(true);
+
+                        click = 1;
                         Toast.makeText(SearchResultsActivity.this, "Input", Toast.LENGTH_SHORT).show();
                         openDatePickerDialog();
+
+
+
+
                         break;
                 }
             }
@@ -184,9 +203,58 @@ public class SearchResultsActivity extends AppCompatActivity {
                     edtSearchTxt.setError("Please enter search text");
                 }else{
 
-                    query = dbRef.orderByChild("name").startAt(searchTxt);
-                    load_data(query);
-                    searchTxt = "";
+                    if (click == 1){
+                        query = dbRef.orderByChild("formattedDate").equalTo(formattedDate);
+                        Log.e("format date",formattedDate);
+
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                dataModel_search.clear();
+
+                                if (snapshot.exists()){
+                                    for (DataSnapshot retrievalSnapshot: snapshot.getChildren()){
+
+                                        LostPersonDataModel data = retrievalSnapshot.getValue(LostPersonDataModel.class);
+                                        if (data != null) {
+                                            data.setName(retrievalSnapshot.child("name").getValue().toString());
+                                            data.setImgUrl(retrievalSnapshot.child("imgUrl").getValue().toString());
+                                            Log.e("entered search snapshot", data.getName());
+
+                                            dataModel_search.add(data);
+                                        }
+                                    }
+                                }else {
+                                    // create an alert builder
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchResultsActivity.this);
+                                    builder.setMessage("No Data Found Matching Your Searched Date!");
+                                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                                    // create and show the alert dialog
+                                    AlertDialog dialog = builder.create();
+                                    dialog.setCancelable(true);
+                                    dialog.show();
+                                }
+                                adapter.notifyDataSetChanged();
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.e("date search cancel", error.getMessage());
+                            }
+                        });
+                    }else{
+                        query = dbRef.orderByChild("name").startAt(searchTxt);
+                        load_data(query);
+                        searchTxt = "";
+                    }
+
                 }
 
 
@@ -251,6 +319,8 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                             edtSearchTxt.setText(sDate);
                             selectedDate = cal.getTime();
+                            selectedTimestamp = selectedDate.getTime();
+                            formattedDate = sfd.format(selectedTimestamp);
                             Log.e("DOB selected", String.valueOf(selectedDate));
 
 

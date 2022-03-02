@@ -342,14 +342,15 @@ public class AddPersonDataActivity extends AppCompatActivity {
     private void save_data(){
 
         date = calendar.getTime();
-        //String dates  = String.valueOf(date);
+        String formattedDate = sfd.format(date);
+        dataModel.setFormattedDate(formattedDate);
 
         Log.e("saved date", String.valueOf(date));
 
         showProgressBAr();
         dataModel = new LostPersonDataModel(dataModel.getName(),dataModel.getFather_name()
                 ,dataModel.getGrandf_name(), dataModel.getMother_name(),dataModel.getBody_color(),dataModel.getDob()
-                ,dataModel.getImgUrl(),dataModel.getCase_num(),date.getTime());
+                ,dataModel.getImgUrl(),dataModel.getCase_num(),date.getTime(),dataModel.getFormattedDate());
 
         if (mUser != null){
             Log.e("firebase", "entered user not null");

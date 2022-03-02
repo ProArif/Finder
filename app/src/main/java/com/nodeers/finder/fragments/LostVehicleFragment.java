@@ -1,8 +1,10 @@
 package com.nodeers.finder.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -83,14 +85,32 @@ public class LostVehicleFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataModel.clear();
 
-                for (DataSnapshot dsnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()){
+                    for (DataSnapshot dsnapshot : snapshot.getChildren()) {
 
-                    VehicleDataModel data = dsnapshot.getValue(VehicleDataModel.class);
-                    data.setName(dsnapshot.child("name").getValue().toString());
-                    data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
+                        VehicleDataModel data = dsnapshot.getValue(VehicleDataModel.class);
+                        data.setName(dsnapshot.child("name").getValue().toString());
+                        data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
 
-                    dataModel.add(data);
+                        dataModel.add(data);
+                    }
+                }else{
+                    // create an alert builder
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("No Data Found!");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    // create and show the alert dialog
+                    AlertDialog dialog = builder.create();
+                    dialog.setCancelable(true);
+                    dialog.show();
                 }
+
                 adapter.notifyDataSetChanged();
             }
 

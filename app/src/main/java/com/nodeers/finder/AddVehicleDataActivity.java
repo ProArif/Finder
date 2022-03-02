@@ -56,9 +56,11 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.UUID;
 
 public class AddVehicleDataActivity extends AppCompatActivity {
@@ -81,6 +83,10 @@ public class AddVehicleDataActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> chooseVehicleImageActivityResultLauncher;
 
     private boolean clicked_img = false;
+
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+    private Date date;
+    private Calendar calendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,13 +260,12 @@ public class AddVehicleDataActivity extends AppCompatActivity {
 
     private void save_data(){
 
-        Date netDate = new Date(); // current time from here
-        SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        String time =  sfd.format(netDate);
-        dataModel.setDate(time);
-
+        String formattedDate;
+        date = calendar.getTime();
+        formattedDate = sfd.format(date);
         showProgressBAr();
-        dataModel = new VehicleDataModel(dataModel.getRegNo(),dataModel.getName(),dataModel.getImgUrl(),dataModel.getDate());
+        dataModel = new VehicleDataModel(dataModel.getRegNo(),dataModel.getName(),
+                dataModel.getImgUrl(),date.getTime(),formattedDate);
 
         if (mUser != null){
             Log.e("firebase", "entered user not null");

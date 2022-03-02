@@ -1,8 +1,10 @@
 package com.nodeers.finder.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -81,18 +83,36 @@ public class FoundFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataModel_lost_person.clear();
 
-                for (DataSnapshot dsnapshot : snapshot.getChildren()) {
+                if (snapshot.exists()){
+                    for (DataSnapshot dsnapshot : snapshot.getChildren()) {
 
-                    LostPersonDataModel data = dsnapshot.getValue(LostPersonDataModel.class);
-                    if (data != null) {
-                        data.setName(dsnapshot.child("name").getValue().toString());
-                        data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
-                        Log.e("entered snapshot",data.getName());
+                        LostPersonDataModel data = dsnapshot.getValue(LostPersonDataModel.class);
+                        if (data != null) {
+                            data.setName(dsnapshot.child("name").getValue().toString());
+                            data.setImgUrl(dsnapshot.child("imgUrl").getValue().toString());
+                            Log.e("entered snapshot",data.getName());
 
-                        dataModel_lost_person.add(data);
+                            dataModel_lost_person.add(data);
+                        }
+
                     }
+                }else {
+                    // create an alert builder
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("No Data Found!");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
 
+                    // create and show the alert dialog
+                    AlertDialog dialog = builder.create();
+                    dialog.setCancelable(true);
+                    dialog.show();
                 }
+
                 adapter.notifyDataSetChanged();
             }
 
