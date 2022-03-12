@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Thana "
+            android:text="@string/police_station"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:padding="10dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Enter Your Posted Thana"
+            android:hint="@string/enter_your_posted_station"
             android:layout_weight="2"/>
 
     </LinearLayout>
@@ -60,7 +60,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="District "
+            android:text="@string/district"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:padding="10dp"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Enter your posted district "
+            android:hint="@string/enter_your_posted_district"
             android:layout_weight="2"/>
 
     </LinearLayout>
@@ -89,7 +89,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Mobile No. "
+            android:text="@string/mobile_no"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:padding="10dp"
@@ -102,7 +102,7 @@
             android:id="@+id/edt_police_phn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="013200"
+            android:text="@string/_013200"
             android:layout_weight="2"
             android:inputType="textPhonetic"
             android:selectAllOnFocus="true"
@@ -122,7 +122,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginBottom="50dp"
-        android:text="Send Verification Code" />
+        android:text="@string/send_verification_code" />
 
 
     <!--    <EditText-->
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:cursorVisible="true"
-            android:hint="Enter code"
+            android:hint="@string/enter_code"
             android:inputType="text"
             android:padding="10dp"
             android:textColor="@color/black"
@@ -180,7 +180,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_horizontal"
-            android:text="Didn't got code? Resend"
+            android:text="@string/didn_t_got_code_resend"
             android:textColor="@color/common_google_signin_btn_text_light"
             android:textStyle="italic">
 
@@ -190,7 +190,7 @@
             android:id="@+id/btn_verify_police"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Verify">
+            android:text="@string/verify">
 
         </Button>
 

@@ -19,7 +19,7 @@
                 android:layout_below="@id/person_img"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="24sp" />

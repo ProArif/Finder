@@ -13,7 +13,7 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="Highest Uploader will be REWARDED!\nTake the help of Police"
+                android:text="@string/blink_text"
                 android:textColor="@color/red"
                 android:textSize="25sp" />
 
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Your data  Uploaded Successfully!"
+                    android:text="@string/your_data_uploaded_successfully"
                     android:textStyle="bold"
                     android:textColor="@color/teal"
                     android:textSize="25sp">
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Continue"
+                android:text="@string/continue_app"
                 android:id="@+id/continue_app"
                 android:layout_margin="10dp"
                 android:textSize="20sp">

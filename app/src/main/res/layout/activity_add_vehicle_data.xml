@@ -12,139 +12,172 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tv"
-            android:text="Enter the information's below:"
-            android:textSize="20sp"
-            android:textStyle="italic"
-            android:layout_margin="10dp"
-            android:textColor="@color/black"/>
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
+            android:layout_gravity="center_horizontal"
+            app:cardElevation="7dp">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Lost/found?"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/spnr_lost_found_vehicle"
-                android:spinnerMode="dropdown"
-                android:padding="15dp"
-                android:layout_weight="2">
-
-            </Spinner>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3"
-            >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Registration No. "
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextVehicleRegNo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Reg. No. here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3"
-            >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Engine No. "
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextEngineNo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Engine No. here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Upload Photo"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <ImageView
+                android:id="@+id/textView3"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:id="@+id/imageVehicle"
-                android:src="@drawable/image"
-                android:layout_weight="2">
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:text="@string/enter_the_vehicle_information_s_below"
+                />
 
-            </ImageView>
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lost_or_found"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="12dp"
+                    android:layout_weight="1">
+
+                </TextView>
+
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spnr_lost_found_vehicle"
+                    android:spinnerMode="dropdown"
+                    android:padding="20dp"
+                    android:layout_weight="2">
+
+                </Spinner>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_reg_no_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextVehicleRegNo"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_engine_no_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextEngineNo"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upload_photo"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/imageVehicle"
+                    android:src="@drawable/image"
+                    android:layout_weight="2">
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Data"
+            android:text="@string/submit_data"
             android:layout_margin="10dp"
             android:id="@+id/btnSubmitVehicleData">
 
@@ -153,7 +186,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Found Data"
+            android:text="@string/submit_found_data"
             android:visibility="gone"
             android:layout_margin="10dp"
             android:id="@+id/btnSubmitFoundVData">

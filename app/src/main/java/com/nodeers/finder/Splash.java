@@ -3,10 +3,13 @@ package com.nodeers.finder;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import java.util.Locale;
 
 public class Splash extends AppCompatActivity {
 
@@ -44,4 +47,6 @@ public class Splash extends AppCompatActivity {
                 }
             }, SPLASH_SCREEN_TIME_OUT);
         }
+
+
     }

@@ -24,10 +24,13 @@
         android:theme="@style/Theme.Finder">
         <activity
             android:name=".AddVehicleDataActivity"
+
             android:exported="false" />
         <activity
             android:name=".AddPersonDataActivity"
+
             android:exported="false">
+
         </activity>
         <activity
             android:name=".LogOutActivity"
@@ -35,6 +38,7 @@
             android:noHistory="true"/>
         <activity
             android:name=".SearchResultsActivity"
+
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -44,15 +48,19 @@
             android:name=".Splash"
             android:exported="true"
             android:noHistory="true">
+
+
+
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />

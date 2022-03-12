@@ -3,44 +3,202 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AddPersonDataActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:text="Lost or found?"
-            android:padding="10dp"
-            />
+            app:cardElevation="7dp">
 
-        <Spinner
-            android:id="@+id/choice_spinner_lost_found"
-            android:padding="20dp"
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:text="@string/enter_person_info"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textStyle="italic"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:text="Enter the informations of missing/wanted person below: "
-            />
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lost_or_found"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:padding="12dp"
+                    android:layout_weight="1">
+
+                </TextView>
+
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/choice_spinner_lost_found"
+                    android:spinnerMode="dropdown"
+                    android:padding="20dp"
+                    android:layout_weight="2">
+
+                </Spinner>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_name_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_fathers_name_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextFathersName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_grandfathers_name_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextGrFathersName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_mothers_name_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextMothersName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,128 +209,11 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Name "
+                android:text="@string/body_color"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Name here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Fathers Name "
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextFathersName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Fathers Name here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Grandfathers Name "
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextGrFathersName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Grandfathers Name here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Mothers Name "
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/editTextMothersName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Mothers Name here"
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Body Color"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
+                android:layout_weight="1">
 
             </TextView>
 
@@ -181,45 +222,103 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spnr_body_color"
                 android:spinnerMode="dropdown"
-                android:padding="15dp"
+                android:padding="22dp"
                 android:layout_weight="2">
 
             </Spinner>
 
         </LinearLayout>
 
-        <LinearLayout
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="3">
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp">
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_date_of_birth_here">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:id="@+id/editTextDob"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/case_gd_lost"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Spinner
+                android:id="@+id/choice_spinner_gd_case"
+                android:padding="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Date of Birth"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="10dp"
+                android:spinnerMode="dropdown"
                 android:layout_weight="1"
-                tools:ignore="NestedWeights">
-
-            </TextView>
+                />
 
             <EditText
-                android:id="@+id/editTextDob"
+                android:id="@+id/editTextCase"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Enter Date of birth here"
+                android:inputType="number"
+                android:hint="@string/case_no_edt_hint"
+                android:layout_weight="2"/>
+
+            <EditText
+                android:id="@+id/editTextGd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:visibility="gone"
+                android:inputType="number"
+                android:hint="@string/enter_gd_edt_hint"
                 android:layout_weight="2"/>
 
         </LinearLayout>
 
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -229,7 +328,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Upload Photo"
+                android:text="@string/upload_photo"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:padding="10dp"
@@ -246,17 +345,11 @@
                             android:layout_weight="2">
 
                         </ImageView>
-<!--            <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--                android:id="@+id/upload_image"-->
-<!--                android:layout_width="150dp"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_weight="2"-->
-<!--                android:src="@drawable/profile"-->
-<!--                app:civ_border_width="2dp"-->
-<!--                app:civ_border_color="@color/teal"/>-->
+
 
         </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -274,11 +367,12 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Are you a police officials?"
+                    android:text="@string/are_you_a_police_officials"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:padding="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights">
 
                 </TextView>
 
@@ -302,11 +396,12 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Do Your superior officer knows?"
+                    android:text="@string/do_your_superior_officer_knows"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:padding="10dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights">
 
                 </TextView>
 
@@ -331,7 +426,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Case No./GD No."
+                    android:text="@string/case_no_gd_no"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:padding="10dp"
@@ -346,21 +441,23 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:hint="Enter Case No. or GD No. here"
+                    android:hint="@string/enter_case_no_or_gd_no_here"
                     android:layout_weight="2"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/submitPersonData"
             android:layout_margin="10dp"
-            android:text="Submit Data">
+            android:text="@string/submit_data">
 
         </Button>
+
 
         <Button
             android:layout_width="match_parent"
@@ -368,7 +465,7 @@
             android:id="@+id/submitWantedData"
             android:visibility="gone"
             android:layout_margin="5dp"
-            android:text="Submit Wanted Data">
+            android:text="@string/submit_wanted_data">
 
         </Button>
 
@@ -378,7 +475,7 @@
             android:id="@+id/submitFoundData"
             android:visibility="gone"
             android:layout_margin="5dp"
-            android:text="Submit Found Data">
+            android:text="@string/submit_found_data">
 
         </Button>
 

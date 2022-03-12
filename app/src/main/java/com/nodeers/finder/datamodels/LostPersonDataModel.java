@@ -5,6 +5,15 @@ import java.util.Date;
 public class LostPersonDataModel {
 
     private String name,father_name,mother_name,grandf_name,body_color,dob,imgUrl,case_num,formattedDate;
+    private String gd_case_no_lost;
+
+    public String getGd_case_no_lost() {
+        return gd_case_no_lost;
+    }
+
+    public void setGd_case_no_lost(String gd_case_no_lost) {
+        this.gd_case_no_lost = gd_case_no_lost;
+    }
 
     private long date;
 
@@ -29,7 +38,8 @@ public class LostPersonDataModel {
     }
 
     public LostPersonDataModel(String name, String father_name,String grandf_name, String mother_name,
-                               String body_color, String dob, String imgUrl, String case_no,long date,String formattedDate) {
+                               String body_color, String dob, String imgUrl, String case_no,long date,String formattedDate
+    ,String gd_case_no) {
 
         this.name = name;
         this.father_name = father_name;
@@ -41,6 +51,7 @@ public class LostPersonDataModel {
         this.case_num = case_no;
         this.date = date;
         this.formattedDate = formattedDate;
+        this.gd_case_no_lost = gd_case_no;
 
     }
 

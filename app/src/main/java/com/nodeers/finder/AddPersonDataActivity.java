@@ -66,17 +66,19 @@ import java.util.UUID;
 
 public class AddPersonDataActivity extends AppCompatActivity {
 
-    private Spinner choice_l_w;
+    private Spinner choice_l_w,choice_gd_case;
     private Spinner choice_color;
     private Spinner choice_police;
     private Spinner choice_superior;
-    private LinearLayout invisible_layout;
+    private LinearLayout invisible_layout, case_gd;
     private Button btnSubmit,btnWantedSubmit,btnFoundSubmit;
 
-    private EditText edtName,edtFathername,edtGFName,edtMotherName,edtDOB,edtCaseNo;
+    private EditText edtName,edtFathername,edtGFName,edtMotherName,edtDOB,edtCaseNo,edt_gd,edt_case;
     private String name,fName,GFname,mName,dob,img_uri,body_color,uId,case_no;
+    private int lost_case_gd_no;
     private ImageView img_upload;
     private Uri img;
+    private String compare = "null";
 
     private ArrayList<LostPersonDataModel> dataModel_lost_person ;
     private LostPersonDataModel dataModel = new LostPersonDataModel();
@@ -92,7 +94,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
     private boolean clicked_img = false;
 
-    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.forLanguageTag("en"));
     private Date date;
     private Calendar calendar = Calendar.getInstance();
 
@@ -120,6 +122,8 @@ public class AddPersonDataActivity extends AppCompatActivity {
         edtMotherName = findViewById(R.id.editTextMothersName);
         edtDOB = findViewById(R.id.editTextDob);
         edtCaseNo = findViewById(R.id.editTextCaseNo);
+        edt_gd = findViewById(R.id.editTextGd);
+        edt_case = findViewById(R.id.editTextCase);
 
         //upload_img = findViewById(R.id.upload_image);
         img_upload = findViewById(R.id.image);
@@ -130,12 +134,14 @@ public class AddPersonDataActivity extends AppCompatActivity {
         choice_color = findViewById(R.id.spnr_body_color);
         choice_police = findViewById(R.id.choice_police);
         choice_superior = findViewById(R.id.choice_superior_officer);
+        choice_gd_case = findViewById(R.id.choice_spinner_gd_case);
 
         btnSubmit = findViewById(R.id.submitPersonData);
         btnWantedSubmit = findViewById(R.id.submitWantedData);
         btnFoundSubmit = findViewById(R.id.submitFoundData);
 
         invisible_layout = findViewById(R.id.foundVisibleOptions);
+        case_gd = findViewById(R.id.case_gd_lost);
 
         setAdapters();
 
@@ -149,19 +155,23 @@ public class AddPersonDataActivity extends AppCompatActivity {
                         invisible_layout.setVisibility(View.GONE);
                         btnSubmit.setVisibility(View.VISIBLE);
                         btnWantedSubmit.setVisibility(View.GONE);
+                        btnFoundSubmit.setVisibility(View.GONE);
+                        case_gd.setVisibility(View.VISIBLE);
                         break;
                     case 1:
                         Toast.makeText(AddPersonDataActivity.this,"Wanted selected",Toast.LENGTH_LONG).show();
                         invisible_layout.setVisibility(View.VISIBLE);
                         btnSubmit.setVisibility(View.GONE);
                         btnWantedSubmit.setVisibility(View.VISIBLE);
-
+                        btnFoundSubmit.setVisibility(View.GONE);
+                        case_gd.setVisibility(View.GONE);
                         break;
 
                     case 2:
                         invisible_layout.setVisibility(View.GONE);
                         btnSubmit.setVisibility(View.GONE);
                         btnWantedSubmit.setVisibility(View.GONE);
+                        case_gd.setVisibility(View.GONE);
                         btnFoundSubmit.setVisibility(View.VISIBLE);
                         break;
                 }
@@ -170,6 +180,37 @@ public class AddPersonDataActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 btnSubmit.setVisibility(View.VISIBLE);
+            }
+        });
+
+        choice_gd_case.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        edt_gd.setVisibility(View.GONE);
+                        edt_case.setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
+                        edt_gd.setVisibility(View.GONE);
+                        edt_case.setVisibility(View.VISIBLE);
+                        compare = "case";
+
+
+                        break;
+                    case 2:
+                        edt_case.setVisibility(View.GONE);
+                        edt_gd.setVisibility(View.VISIBLE);
+                        compare = "gd";
+
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -217,7 +258,6 @@ public class AddPersonDataActivity extends AppCompatActivity {
                 openDatePickerDialog(view);
             }
         });
-
         choice_color.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -241,7 +281,6 @@ public class AddPersonDataActivity extends AppCompatActivity {
             }
         });
 
-
         img_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,6 +296,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initialize_data();
+                //initialize_case_gd();
                 if (name.isEmpty()){
                     edtName.setError("Please enter your name");
                 }
@@ -265,6 +305,10 @@ public class AddPersonDataActivity extends AppCompatActivity {
                 }
                 else if (dob.isEmpty()){
                     edtDOB.setError("Please select your Date of Birth");
+                }
+
+                else if ( lost_case_gd_no== 0){
+                    edt_case.setError("Please enter case no. correctly");
                 }
                 else{
                     uploadToStorage();
@@ -350,7 +394,7 @@ public class AddPersonDataActivity extends AppCompatActivity {
         showProgressBAr();
         dataModel = new LostPersonDataModel(dataModel.getName(),dataModel.getFather_name()
                 ,dataModel.getGrandf_name(), dataModel.getMother_name(),dataModel.getBody_color(),dataModel.getDob()
-                ,dataModel.getImgUrl(),dataModel.getCase_num(),date.getTime(),dataModel.getFormattedDate());
+                ,dataModel.getImgUrl(),dataModel.getCase_num(),date.getTime(),dataModel.getFormattedDate(),dataModel.getGd_case_no_lost());
 
         if (mUser != null){
             Log.e("firebase", "entered user not null");
@@ -439,7 +483,6 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
     }
 
-
     private void empty_fields(){
         edtName.setText("");
         edtDOB.setText("");
@@ -462,6 +505,19 @@ public class AddPersonDataActivity extends AppCompatActivity {
         dataModel.setDob(dob);
         dataModel.setGrandf_name(GFname);
         dataModel.setMother_name(mName);
+
+        if (compare.equals("case")){
+            lost_case_gd_no = Integer.parseInt(edt_case.getText().toString().trim());
+            dataModel.setGd_case_no_lost(String.valueOf(lost_case_gd_no));
+        }else if (compare.equals("gd")){
+            lost_case_gd_no = Integer.parseInt(edt_gd.getText().toString().trim());
+            dataModel.setGd_case_no_lost(String.valueOf(lost_case_gd_no));
+        }else{
+            lost_case_gd_no = 0;
+            //Toast.makeText(AddPersonDataActivity.this, "Please Enter Case/GD No.", Toast.LENGTH_LONG).show();
+            edt_case.setError("Please enter Case/ GD No. here!");
+            Log.e("else case gd","entered else");
+        }
 
     }
 
@@ -523,23 +579,21 @@ public class AddPersonDataActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch (requestCode) {
-            case 1:
-                if (ContextCompat.checkSelfPermission(AddPersonDataActivity.this,
-                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(),
-                            "FlagUp Requires Access to Camara.", Toast.LENGTH_SHORT)
-                            .show();
-                } else if (ContextCompat.checkSelfPermission(AddPersonDataActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(),
-                            "FlagUp Requires Access to Your Storage.",
-                            Toast.LENGTH_SHORT).show();
-                    //checkAndRequestPermissions(this);
-                } else {
-                    chooseImage(AddPersonDataActivity.this);
-                }
-                break;
+        if (requestCode == 1) {
+            if (ContextCompat.checkSelfPermission(AddPersonDataActivity.this,
+                    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(),
+                        "FlagUp Requires Access to Camara.", Toast.LENGTH_SHORT)
+                        .show();
+            } else if (ContextCompat.checkSelfPermission(AddPersonDataActivity.this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(),
+                        "FlagUp Requires Access to Your Storage.",
+                        Toast.LENGTH_SHORT).show();
+                //checkAndRequestPermissions(this);
+            } else {
+                chooseImage(AddPersonDataActivity.this);
+            }
         }
     }
 
@@ -643,6 +697,14 @@ public class AddPersonDataActivity extends AppCompatActivity {
 // Apply the adapter to the spinner
         choice_superior.setAdapter(adapter5);
 
+        ArrayAdapter<CharSequence> adapter6 = ArrayAdapter.createFromResource(this,
+                R.array.choice_case_gd, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter6.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //set prompt message
+        choice_gd_case.setPrompt("Select One");
+// Apply the adapter to the spinner
+        choice_gd_case.setAdapter(adapter6);
 
     }
 
@@ -653,12 +715,10 @@ public class AddPersonDataActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view, year, monthOfYear, dayOfMonth) -> {
                     String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-                    switch (v.getId()) {
-                        case R.id.editTextDob:
-                            ((EditText)v).setText(selectedDate);
-                            dob = selectedDate;
-                            Log.e("DOB selected",dob);
-                            break;
+                    if (v.getId() == R.id.editTextDob) {
+                        ((EditText) v).setText(selectedDate);
+                        dob = selectedDate;
+                        //Log.e("DOB selected", dob);
                     }
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 

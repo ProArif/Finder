@@ -42,7 +42,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private Button btnSearch;
     private Spinner category_choice, date_choice,p_v_choice;
 
-    private String searchTxt, formattedDate ;
+    private String searchTxt, formattedDate;
     private Date selectedDate, startDate,endDate;
     private long selectedTimestamp;
     private String category = "person";
@@ -52,7 +52,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private Query query;
     private final FirebaseDatabase mDb = FirebaseDatabase.getInstance("https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app/");
     private LostPersonGridVAdapter adapter;
-    private ArrayList<LostPersonDataModel> dataModel_search ;
+    private ArrayList<LostPersonDataModel> dataModel_search;
     private Calendar calendar = Calendar.getInstance();
     SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
     @Override
@@ -74,7 +74,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         category_choice = findViewById(R.id.search_category);
         date_choice = findViewById(R.id.search_date_category);
         //p_v_choice = findViewById(R.id.search_person_vehicle);
-
         //btnSearch.setVisibility(View.INVISIBLE);
 
 
@@ -177,12 +176,9 @@ public class SearchResultsActivity extends AppCompatActivity {
                         break;
                     case 3:
                         btnSearch.setEnabled(true);
-
                         click = 1;
                         Toast.makeText(SearchResultsActivity.this, "Input", Toast.LENGTH_SHORT).show();
                         openDatePickerDialog();
-
-
 
 
                         break;

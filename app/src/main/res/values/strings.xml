@@ -52,6 +52,7 @@
         <item>White</item>
         <item>Black</item>
     </string-array>
+
     <string-array name="choice_police">
         <item>OC</item>
         <item>ASP</item>
@@ -62,6 +63,12 @@
     <string-array name="choice_category">
         <item>Police Officials</item>
         <item>General</item>
+    </string-array>
+
+    <string-array name="choice_case_gd">
+        <item>Select One</item>
+        <item>Case No.</item>
+        <item>GD No.</item>
     </string-array>
 
     <!--to toggle the open close button
@@ -78,5 +85,77 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="search">Search</string>
+    <string name="lost_or_found">Lost or found?</string>
+    <string name="search_text">Enter text here for search</string>
+    <string name="enter_person_info">Enter the information\'s of the person below:</string>
+    <string name="name">Name</string>
+    <string name="enter_name_here">Enter Name here</string>
+    <string name="fathers_name">Fathers Name</string>
+    <string name="enter_fathers_name_here">Enter Fathers Name here</string>
+    <string name="grandfathers_name">Grandfathers Name</string>
+    <string name="enter_grandfathers_name_here">Enter Grandfathers Name here</string>
+    <string name="mothers_name">Mothers Name</string>
+    <string name="enter_mothers_name_here">Enter Mothers Name here</string>
+    <string name="body_color">Body Color</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="enter_date_of_birth_here">Enter Date of birth here</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="are_you_a_police_officials">Are you a police officials?</string>
+    <string name="do_your_superior_officer_knows">Do Your superior officer knows?</string>
+    <string name="case_no_gd_no">Case No./GD No.</string>
+    <string name="enter_case_no_or_gd_no_here">Enter Case No. or GD No. here</string>
+    <string name="submit_data">Submit Data</string>
+    <string name="submit_wanted_data">Submit Wanted Data</string>
+    <string name="submit_found_data">Submit Found Data</string>
+    <string name="enter_the_vehicle_information_s_below">Enter the vehicle information\'s below:</string>
+    <string name="lost_found">Lost/found?</string>
+    <string name="registration_no">Registration No.</string>
+    <string name="enter_reg_no_here">Enter Reg. No. here</string>
+    <string name="engine_no">Engine No.</string>
+    <string name="enter_engine_no_here">Enter Engine No. here</string>
+    <string name="you_have_successfully_logged_out">You have Successfully Logged Out!</string>
+    <string name="still_browse">But you can still browse our app by clicking below:</string>
+    <string name="continue_to_app">Continue to app</string>
+    <string name="welcome_to_skrm_finder">Welcome to SKRM- Finder</string>
+    <string name="select_you_are_a_police_or_general_user_to_continue">Select you are a police or general user to continue</string>
+    <string name="please_wait">Please wait</string>
+    <string name="please_login_to_continue_to_your_profile">Please login to continue to your profile.</string>
+    <string name="send_verification_code">Send Verification Code</string>
+    <string name="enter_code">Enter code</string>
+    <string name="didn_t_got_code_resend">Didn\'t got code? Resend</string>
+    <string name="verify">Verify</string>
+    <string name="verifying">Verifying…</string>
+    <string name="police_station">Police Station</string>
+    <string name="enter_your_posted_station">Enter Your Posted Station</string>
+    <string name="district">District</string>
+    <string name="enter_your_posted_district">Enter your posted district</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="_013200">013200</string>
+    <string name="edit_personal_information_s">Edit Personal Information\'s</string>
+    <string name="edit_name">Edit Name</string>
+    <string name="change_profile_image">Change Image</string>
+    <string name="upload_data">Upload Data</string>
+    <string name="person">Person</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="search_data">Search Data</string>
+    <string name="by_date">By Date</string>
+    <string name="by_name">By Name</string>
+    <string name="language">Language</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="one_stop_lost_and_found_solutions">One Stop Lost and Found Solutions</string>
+    <string name="your_data_uploaded_successfully">Your data Uploaded Successfully!</string>
+    <string name="continue_app">Continue</string>
+    <string name="blink_text">Highest Uploader will be REWARDED!\nTake the help of Police</string>
+    <string name="bangla">Bangla</string>
+    <string name="english">English</string>
+    <string name="my_account">My Account</string>
+    <string name="upload">Upload</string>
+    <string name="lost">Lost</string>
+    <string name="found">Found</string>
+    <string name="case_no_edt_hint">Enter Case No. here</string>
+    <string name="enter_gd_edt_hint">Enter GD No. here</string>
+    <string name="enter_your_phone_no">Enter your phone no.</string>
+
 
 </resources>

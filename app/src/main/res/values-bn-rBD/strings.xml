@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ফাইন্ডার</string>
+    <!--to toggle the open close button
+      of the navigation drawer-->
+    <string name="nav_open"> ওপেন </string>
+    <string name="nav_close">ক্লোজ</string>
+    <string name="title_activity_add_person_data">AddPersonDataActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">পরবর্তী </string>
+    <string name="previous">পূর্ববর্তী </string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">ফোন</string>
+    <string name="prompt_password">পাসওয়ার্ড </string>
+    <string name="action_sign_in">সাইন ইন অথবা রেজিস্টার </string>
+    <string name="action_sign_in_short">সাইন ইন</string>
+    <string name="welcome">"স্বাগতম !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="mothers_name">মায়ের নাম</string>
+    <string name="enter_mothers_name_here"> এখানে মায়ের নাম লিখুন</string>
+    <string name="body_color">শরীরের রঙ </string>
+    <string name="date_of_birth">জন্মতারিখ</string>
+    <string name="enter_date_of_birth_here">এখানে জন্মতারিখ লিখুন</string>
+    <string name="upload_photo">ছবি আপলোড </string>
+    <string name="are_you_a_police_officials"> আপনি কি পুলিশ কর্মকর্তা ?</string>
+    <string name="do_your_superior_officer_knows">আপনার ঊর্ধ্বতন কর্মকর্তা জানেন ?</string>
+    <string name="case_no_gd_no">কেস নং / জিডি নং</string>
+    <string name="enter_case_no_or_gd_no_here">এখানে কেস নং / জিডি নং লিখুন</string>
+    <string name="submit_data"> তথ্য সাবমিট করুন</string>
+    <string name="submit_wanted_data"> ওয়ান্টেড তথ্য সাবমিট করুন</string>
+    <string name="submit_found_data">খুজে পাওয়া তথ্য সাবমিট করুন</string>
+    <string name="enter_the_vehicle_information_s_below">নিম্নে গাড়ীর তথ্য পূরণ করুন</string>
+    <string name="lost_found">হারানো / পাওয়া ?</string>
+    <string name="registration_no">রেজিস্ট্রেশন নং </string>
+    <string name="enter_reg_no_here">এখানে রেজিস্ট্রেশন নং লিখুন</string>
+    <string name="engine_no"> ইঞ্জিন নং </string>
+    <string name="enter_engine_no_here">এখানে  ইঞ্জিন নং লিখুন </string>
+    <string name="you_have_successfully_logged_out">আপনি সফলভাবে লগ আউট করেছেন !</string>
+    <string name="still_browse">কিন্তু লগ ইন ছারাই আপনি আমাদের অ্যাপ ব্রাউজ করতে পারবেন</string>
+    <string name="continue_to_app">অ্যাপ ব্রাউজ করুন</string>
+    <string name="welcome_to_skrm_finder">ফাইন্ডার অ্যাপে আপনাকে স্বাগতম </string>
+    <string name="verify">ভেরিফাই</string>
+    <string name="verifying">ভেরিফাই হচ্ছে …</string>
+    <string name="police_station">থানা</string>
+    <string name="enter_your_posted_station">আপনার বর্তমান থানা লিখুন </string>
+    <string name="district">জেলা</string>
+    <string name="enter_your_posted_district">আপনার বর্তমান জেলা লিখুন</string>
+    <string name="mobile_no">মোবাইল নং </string>
+    <string name="_013200">০১৩২০০</string>
+    <string name="edit_name">নাম পরিবর্তন করুন</string>
+    <string name="change_profile_image"> প্রোফাইলের ছবি পরিবর্তন করুন</string>
+    <string name="upload_data"> তথ্য আপলোড করুন </string>
+    <string name="by_name">নাম দিয়ে</string>
+    <string name="language"> ভাষা </string>
+    <string name="edit_profile">প্রোফাইল এডিট করুন </string>
+    <string name="logout">লগ আউট </string>
+    <string name="your_data_uploaded_successfully">আপনার তথ্য সফলভাবে আপলোড হয়েছে !</string>
+    <string name="continue_app">অ্যাপ ব্রাউজ করুন</string>
+    <string name="blink_text"> সর্বোচ্চ আপলোডার পুরস্কৃত হবেন !\n পুলিশের সহায়তা নিন </string>
+    <string name="one_stop_lost_and_found_solutions">One Stop Lost and Found Solutions</string>
+    <string name="person">ব্যাক্তি</string>
+    <string name="vehicle"> গাড়ী </string>
+    <string name="search_data"> তথ্য অনুসন্ধান করুন </string>
+    <string name="by_date">তারিখ দিয়ে </string>
+    <string name="edit_personal_information_s">ব্যাক্তিগত তথ্য পরিবর্তন করুন </string>
+    <string name="select_you_are_a_police_or_general_user_to_continue">আপনি কি পুলিশ নাকি জেনারেল ব্যাবহারকারী নির্বাচন করুন</string>
+    <string name="please_wait"> দয়া করে অপেক্ষা করুন </string>
+    <string name="please_login_to_continue_to_your_profile">আপনার প্রোফাইল এ যাওয়ার জন্য লগ ইন করুন </string>
+    <string name="send_verification_code">ভেরিফিকেশন কোড পাঠান </string>
+    <string name="enter_code">কোড লিখুন </string>
+    <string name="didn_t_got_code_resend">Didn\'t got code? Resend</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="search">খুজুন </string>
+    <string name="lost_or_found">হারানো / পাওয়া ?</string>
+    <string name="search_text">খোজার জন্য এখানে লিখুন</string>
+    <string name="enter_person_info">ব্যাক্তি্র তথ্য নিম্নে পূরণ করুন </string>
+    <string name="name">নাম</string>
+    <string name="enter_name_here"> এখানে নাম লিখুন </string>
+    <string name="fathers_name">এখানে বাবার নাম লিখুন </string>
+    <string name="enter_fathers_name_here">এখানে মায়ের নাম লিখুন</string>
+    <string name="grandfathers_name">দাদার নাম</string>
+    <string name="enter_grandfathers_name_here">এখানে দাদার নাম লিখুন</string>
+    <string name="bangla">বাংলা</string>
+    <string name="english">ইংরেজি </string>
+    <string name="my_account">আমার অ্যাকাউন্ট</string>
+    <string name="upload">আপলোড</string>
+    <string name="lost">হারানো</string>
+    <string name="found">পাওয়া</string>
+    <string name="case_no_edt_hint">Enter Case No. here</string>
+    <string name="enter_gd_edt_hint">Enter GD No. here</string>
+    <string name="enter_your_phone_no">Enter your phone no.</string>
+
+</resources>

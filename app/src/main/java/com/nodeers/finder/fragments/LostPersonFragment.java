@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,7 @@ public class LostPersonFragment extends Fragment {
 
         adapter = new LostPersonGridVAdapter(getContext(),dataModel_lost_person);
         gridView.setAdapter(adapter);
+
 
         // initializing our variable for firebase
         // realtime db and getting its instance.

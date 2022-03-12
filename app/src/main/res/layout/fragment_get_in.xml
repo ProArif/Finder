@@ -11,28 +11,55 @@
     android:paddingRight="@dimen/fragment_horizontal_margin"
     tools:context=".fragments.GetInFragment">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:cardElevation="7dp">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please login to continue to your profile."
+        android:text="@string/please_login_to_continue_to_your_profile"
         android:textSize="24sp"
+        android:gravity="center"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:layout_margin="20dp"
         android:layout_gravity="center_horizontal">
     </TextView>
 
-        <EditText
-            android:id="@+id/edt_email_phn"
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp">
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="?actionBarSize"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="31dp"
-            android:hint="@string/prompt_email"
-            android:inputType="textPhonetic"
-            android:selectAllOnFocus="true"
-             />
+            android:hint="@string/enter_your_phone_no">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:id="@+id/edt_email_phn"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 
         <Button
@@ -44,25 +71,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="70dp"
             android:layout_marginBottom="50dp"
+            android:text="@string/send_verification_code" />
 
-            android:text="Send Verification Code" />
-
-
-    <!--    <EditText-->
-<!--        android:id="@+id/password"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginEnd="24dp"-->
-<!--        android:hint="@string/prompt_password"-->
-<!--        android:imeActionLabel="@string/action_sign_in_short"-->
-<!--        android:imeOptions="actionDone"-->
-<!--        android:inputType="textPassword"-->
-<!--        android:selectAllOnFocus="true"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/edt_email_phn" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:cursorVisible="true"
-            android:hint="Enter code"
+            android:hint="@string/enter_code"
             android:inputType="text"
             android:padding="10dp"
             android:textColor="@color/black"
@@ -103,7 +113,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_horizontal"
-            android:text="Didn't got code? Resend"
+            android:text="@string/didn_t_got_code_resend"
             android:textColor="@color/common_google_signin_btn_text_light"
             android:textStyle="italic">
 
@@ -113,7 +123,7 @@
             android:id="@+id/btn_verify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Verify">
+            android:text="@string/verify">
 
         </Button>
 
@@ -134,7 +144,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Verifying..."
+        android:text="@string/verifying"
         android:id="@+id/txt_pbar"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"

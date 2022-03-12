@@ -84,7 +84,7 @@ public class AddVehicleDataActivity extends AppCompatActivity {
 
     private boolean clicked_img = false;
 
-    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+    SimpleDateFormat sfd = new SimpleDateFormat("yyyyMMdd", Locale.forLanguageTag("en"));
     private Date date;
     private Calendar calendar = Calendar.getInstance();
 

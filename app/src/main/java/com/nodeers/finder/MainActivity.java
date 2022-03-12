@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,9 +39,8 @@ import com.nodeers.finder.fragments.PoliceGetInFragment;
 import com.nodeers.finder.fragments.ProfileFragment;
 import com.nodeers.finder.fragments.SettingsFragment;
 
-import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     public DrawerLayout drawerLayout;
@@ -147,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id){
+
                     case R.id.lost:
                         toolbar.setTitle("Lost");
                         loadFragment(new LostFragment());
@@ -289,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //for custom choice options
+    //for custom get in choice options
     public void showGetInOptionsDialog (){
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

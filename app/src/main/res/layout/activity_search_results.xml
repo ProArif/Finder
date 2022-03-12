@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter text here for search"
+            android:hint="@string/search_text"
             android:drawableStart="@drawable/search"
             android:id="@+id/searchEdT">
 

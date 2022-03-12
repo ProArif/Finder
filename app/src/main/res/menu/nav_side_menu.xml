@@ -3,25 +3,25 @@
 
     <item
         android:id="@+id/profile"
-        android:title="My Account"
+        android:title="@string/my_account"
         android:icon="@drawable/profile">
     </item>
 
     <item
         android:id="@+id/add"
-        android:title="Upload"
+        android:title="@string/upload"
         android:icon="@drawable/upload">
     </item>
 
     <item
         android:id="@+id/lost"
-        android:title="Lost"
+        android:title="@string/lost"
         android:icon="@drawable/lostl">
     </item>
 
     <item
         android:id="@+id/found_side_nav"
-        android:title="Found"
+        android:title="@string/found"
         android:icon="@drawable/found">
     </item>
 
