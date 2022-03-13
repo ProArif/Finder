@@ -24,6 +24,11 @@
         android:title="@string/found"
         android:icon="@drawable/found">
     </item>
+    <item
+        android:id="@+id/report"
+        android:title="@string/report"
+        android:icon="@drawable/report">
+    </item>
 
     <item
         android:id="@+id/contact"

@@ -22,7 +22,7 @@
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_search_results.xml" value="0.20199275362318841" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/activity_splash.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/category_chooser.xml" value="0.16" />
-        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/dialog_wait.xml" value="0.1" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/dialog_wait.xml" value="0.18" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_add_lost_found_data.xml" value="0.18885869565217392" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_add_lost_person_data.xml" value="0.25" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_add_vehicle_data.xml" value="0.17980072463768115" />
@@ -34,12 +34,14 @@
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_lost_vehicle.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_police_get_in.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_report.xml" value="0.225" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_settings.xml" value="0.19293478260869565" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/fragment_wanted.xml" value="0.20199275362318841" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/gridview_items.xml" value="0.20108695652173914" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/nav_drawer_header.xml" value="0.18" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/person_vehicle_chooser_layout.xml" value="0.22" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/profile_page.xml" value="0.225" />
+        <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/update_profile_details.xml" value="0.21" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/layout/uploaded_successfully_msg.xml" value="0.21784420289855072" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Nodeers/Apps/Finder/app/src/main/res/menu/nav_side_menu.xml" value="0.1398148148148148" />

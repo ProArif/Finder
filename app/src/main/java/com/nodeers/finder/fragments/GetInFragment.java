@@ -1,6 +1,7 @@
 package com.nodeers.finder.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,10 +37,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.nodeers.finder.ProfileActivity;
 import com.nodeers.finder.R;
 import com.nodeers.finder.datamodels.UsersData;
 
@@ -141,16 +146,18 @@ public class GetInFragment extends Fragment {
         return vw ;
     }
 
+
+
     private void save_user(String userId){
         showProgressBAr();
+        data.setImgUrl("none");
         data = new UsersData(data.getName(), data.getImgUrl(),data.getPhn(), data.getmUserId(), data.getUserType());
 
         dbRef.child(userId).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 hideProgressBar();
-                Fragment fragment = new ProfileFragment();
-                loadFragment(fragment);
+                startActivity(new Intent(getContext(),ProfileActivity.class));
 
                 Toast.makeText(getContext(),"Profile Created",Toast.LENGTH_LONG).show();
             }
@@ -294,13 +301,7 @@ public class GetInFragment extends Fragment {
                 });
     }
 
-    private void loadFragment(Fragment fragment) {
-        // load fragment
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+
 
 
 

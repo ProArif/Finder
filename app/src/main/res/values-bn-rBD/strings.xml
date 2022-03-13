@@ -99,5 +99,9 @@
     <string name="case_no_edt_hint">Enter Case No. here</string>
     <string name="enter_gd_edt_hint">Enter GD No. here</string>
     <string name="enter_your_phone_no">Enter your phone no.</string>
+    <string name="report">Report</string>
+    <string name="add_your_message_here">Add your message here...</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="update_name">Update Name</string>
 
 </resources>
