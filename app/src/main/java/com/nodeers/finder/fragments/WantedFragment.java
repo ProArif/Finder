@@ -1,5 +1,6 @@
 package com.nodeers.finder.fragments;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.GridView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +36,8 @@ public class WantedFragment extends Fragment {
     private DatabaseReference dbRef;
 
     private LostPersonGridVAdapter adapter;
+
+    private Dialog dialog;
 
     public WantedFragment() {
         // Required empty public constructor
@@ -78,13 +82,14 @@ public class WantedFragment extends Fragment {
     }
 
     private void loadData() {
-
+        showProgressBAr();
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataModel_lost_person.clear();
 
                 if (snapshot.exists()){
+                    hideProgressBar();
                     for (DataSnapshot dsnapshot : snapshot.getChildren()) {
 
                         LostPersonDataModel data = dsnapshot.getValue(LostPersonDataModel.class);
@@ -95,6 +100,7 @@ public class WantedFragment extends Fragment {
                         dataModel_lost_person.add(data);
                     }
                 }else {
+                    hideProgressBar();
                     // create an alert builder
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("No Data Found!");
@@ -120,5 +126,17 @@ public class WantedFragment extends Fragment {
             }
         });
 
+    }
+
+    private void showProgressBAr(){
+        dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_wait);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void hideProgressBar(){
+        dialog.dismiss();
     }
 }

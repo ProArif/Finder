@@ -29,6 +29,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -97,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         btnUpload = findViewById(R.id.upload_data);
         btnSearch = findViewById(R.id.search_data);
-        btnReport = findViewById(R.id.addReport);
+        btnReport = findViewById(R.id.browse);
         tv_profile_name = findViewById(R.id.user_profile_name);
         tv_profile_phn = findViewById(R.id.user_profile_phn);
         profile_img = findViewById(R.id.profile_img);
@@ -162,7 +163,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new ReportFragment());
+                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
             }
         });
 
@@ -188,7 +189,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    public static boolean checkAndRequestPermissions(final Activity context) {
+    public boolean checkAndRequestPermissions(final Activity context) {
         int WExtstorePermission = ContextCompat.checkSelfPermission(context,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int cameraPermission = ContextCompat.checkSelfPermission(context,
@@ -196,6 +197,7 @@ public class ProfileActivity extends AppCompatActivity {
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
+
         }
         if (WExtstorePermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded
@@ -293,16 +295,51 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Requires Access to Camara.", Toast.LENGTH_SHORT)
                             .show();
+                    openSettings();
+
                 } else if (ContextCompat.checkSelfPermission(ProfileActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(getApplicationContext(),
                             "Requires Access to Your Storage.",
                             Toast.LENGTH_SHORT).show();
-                    //checkAndRequestPermissions(this);
+                    openSettings();
+
                 } else {
                     chooseImage(ProfileActivity.this);
                 }
                 break;
+        }
+    }
+
+    public void openSettings(){
+        Intent intent = new Intent();
+
+        Uri uri = Uri.fromParts("package",this.getPackageName(),null);
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(uri);
+        startActivity(intent);
+    }
+
+    private void show_msg(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            //Show permission explanation dialog...
+            AlertDialog alert = new AlertDialog.Builder(this).setMessage("Without the permissions you cannot access the function")
+                    .setCancelable(false)
+                    .setPositiveButton("Okay, I understand", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            checkAndRequestPermissions(ProfileActivity.this);
+                        }
+                    }).setNegativeButton("No, Exit the App", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).create();
+            alert.setTitle("Requires Permission");
+            alert.show();
+        }else{
+            //Never ask again selected, or device policy prohibits the app from having that permission.
+            //So, disable that feature, or fall back to another situation...
         }
     }
 
@@ -461,10 +498,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void loadData() {
 
+        showProgressBAr();
         dbRef.child(userIdd).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                hideProgressBar();
                 //needs to check Uid and then display accurate data according to logged in user.
 
                 data.setName(Objects.requireNonNull(snapshot.child("name").getValue()).toString());
@@ -482,6 +521,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                hideProgressBar();
                 Log.e("Profile Retrieval Error",error.getMessage());
             }
         });

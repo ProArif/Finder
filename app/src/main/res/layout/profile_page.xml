@@ -340,8 +340,8 @@
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/report"
-                                android:id="@+id/addReport">
+                                android:text="@string/browse"
+                                android:id="@+id/browse">
                             </Button>
 
                         </LinearLayout>

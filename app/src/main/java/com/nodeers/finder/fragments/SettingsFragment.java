@@ -26,6 +26,7 @@ import com.nodeers.finder.LocaleHelper;
 import com.nodeers.finder.LogOutActivity;
 import com.nodeers.finder.MainActivity;
 import com.nodeers.finder.MySharePreference;
+import com.nodeers.finder.ProfileActivity;
 import com.nodeers.finder.R;
 import com.nodeers.finder.Splash;
 
@@ -34,7 +35,7 @@ import java.util.Locale;
 
 public class SettingsFragment extends Fragment {
 
-    private CardView cv_logout,cvLang;
+    private CardView cv_logout,cvLang,cv_edit_pfl;
     private FirebaseUser users;
     private FirebaseAuth mAuth;
 
@@ -78,6 +79,7 @@ public class SettingsFragment extends Fragment {
         cv_logout = ve.findViewById(R.id.card_view_logout);
         cvLang = ve.findViewById(R.id.cv_language);
         lang_layout = ve.findViewById(R.id.linearLayout_language);
+        cv_edit_pfl = ve.findViewById(R.id.edt_pfl);
 
         bd = ve.findViewById(R.id.lan_bd);
         en = ve.findViewById(R.id.lan_en);
@@ -131,6 +133,13 @@ public class SettingsFragment extends Fragment {
                     Toast.makeText(getContext(),"Please login first!!!",Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+
+        cv_edit_pfl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ProfileActivity.class));
             }
         });
 

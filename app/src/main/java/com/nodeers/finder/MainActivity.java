@@ -105,6 +105,7 @@ public class MainActivity extends BaseActivity {
         BottomNavigationView btmNav = findViewById(R.id.nav);
         toolbar = getSupportActionBar();
 
+
         btmNav.setBackground(null);
         btmNav.setItemIconTintList(null);
         btmNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

@@ -103,5 +103,6 @@
     <string name="add_your_message_here">Add your message here...</string>
     <string name="enter_your_name">Enter Your Name</string>
     <string name="update_name">Update Name</string>
+    <string name="browse">Browse</string>
 
 </resources>

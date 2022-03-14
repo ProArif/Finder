@@ -10,13 +10,13 @@
     <item
         android:id="@+id/add"
         android:title="@string/upload"
-        android:icon="@drawable/upload">
+        android:icon="@drawable/uploaded">
     </item>
 
     <item
         android:id="@+id/lost"
         android:title="@string/lost"
-        android:icon="@drawable/lostl">
+        android:icon="@drawable/lost">
     </item>
 
     <item

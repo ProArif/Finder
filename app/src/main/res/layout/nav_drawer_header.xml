@@ -2,34 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:layout_marginBottom="10dp"
-    android:orientation="vertical">
+    android:background="@color/teal"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="64dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:id="@+id/img_nav"
-            android:src="@drawable/finder_logo" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="220dp"
+        android:layout_height="200dp"
+        android:paddingTop="16dp"
+        android:src="@drawable/finder_logo" />
 
-                <TextView
-                    android:id="@+id/navHeaderTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="25sp"
-                    android:text="Lost and Found Online Portal"
-                    android:textColor="@android:color/black" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="@string/app_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-                <TextView
-                    android:id="@+id/navHeaderSubTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All in one place"
-                    android:layout_weight="1"
-                    android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" For loved One's" />
 
-            </LinearLayout>
+</LinearLayout>
 
 
 
