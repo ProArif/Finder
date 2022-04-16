@@ -24,6 +24,13 @@
         android:title="@string/found"
         android:icon="@drawable/found">
     </item>
+
+    <item
+        android:id="@+id/mobile_side_nav"
+        android:title="@string/lost_mobile"
+        android:icon="@drawable/mobile">
+    </item>
+
     <item
         android:id="@+id/report"
         android:title="@string/report"
@@ -32,13 +39,13 @@
 
     <item
         android:id="@+id/contact"
-        android:title="Contact Us"
+        android:title="@string/contact_us"
         android:icon="@drawable/contact">
     </item>
 
     <item
         android:id="@+id/rate"
-        android:title="Rate Us"
+        android:title="@string/rate_us"
         android:icon="@drawable/rate">
     </item>
 

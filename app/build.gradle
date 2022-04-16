@@ -6,6 +6,14 @@ plugins {
 android {
     compileSdk 31
 
+    bundle {
+        language {
+            // We want to be able to switch the locale at runtime using AppLocale!
+            enableSplit = false
+        }
+    }
+
+
     defaultConfig {
         applicationId "com.nodeers.finder"
         minSdk 21
@@ -70,6 +78,16 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'androidx.preference:preference:1.1.1'
+
+    //language
+    // Manages the Locale used by the app
+    implementation 'dev.b3nedikt.applocale:applocale:3.0.0'
+
+// Needed to intercept view inflation
+    implementation 'dev.b3nedikt.viewpump:viewpump:4.0.10'
+
+// Allows to update the text of views at runtime without recreating the activity
+    implementation 'dev.b3nedikt.reword:reword:4.0.2'
 
 
 

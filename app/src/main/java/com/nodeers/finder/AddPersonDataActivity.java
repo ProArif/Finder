@@ -104,8 +104,6 @@ public class AddPersonDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person_data);
 
-
-
         resultLauncher();
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -310,6 +308,13 @@ public class AddPersonDataActivity extends AppCompatActivity {
                 else if ( lost_case_gd_no== 0){
                     edt_case.setError("Please enter case no. correctly");
                 }
+                else if (lost_case_gd_no <= 363){
+                    edt_case.setError("Please enter case no. correctly");
+                }
+                else if (lost_case_gd_no >= 366){
+                    edt_case.setError("Please enter case no. correctly");
+                }
+
                 else{
                     uploadToStorage();
                     //Toast.makeText(AddPersonDataActivity.this,"entered else block",Toast.LENGTH_LONG).show();
@@ -341,6 +346,12 @@ public class AddPersonDataActivity extends AppCompatActivity {
                 }
                 else if (case_no.isEmpty()){
                     edtCaseNo.setError("Please enter Case/GD number");
+                }
+                else if (lost_case_gd_no <= 363){
+                    edt_case.setError("Please enter case no. correctly");
+                }
+                else if (lost_case_gd_no >= 366){
+                    edt_case.setError("Please enter case no. correctly");
                 }
                 else{
                     storageReference = FirebaseStorage.getInstance().getReference("wanted_persons");
@@ -508,7 +519,10 @@ public class AddPersonDataActivity extends AppCompatActivity {
 
         if (compare.equals("case")){
             lost_case_gd_no = Integer.parseInt(edt_case.getText().toString().trim());
+
             dataModel.setGd_case_no_lost(String.valueOf(lost_case_gd_no));
+
+
         }else if (compare.equals("gd")){
             lost_case_gd_no = Integer.parseInt(edt_gd.getText().toString().trim());
             dataModel.setGd_case_no_lost(String.valueOf(lost_case_gd_no));

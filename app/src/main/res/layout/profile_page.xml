@@ -93,7 +93,8 @@
                     android:layout_height="200dp"
                     android:id="@+id/profile_img"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/person">
+                    android:src="@drawable/image"
+                    >
 
                 </de.hdodenhof.circleimageview.CircleImageView>
 

@@ -61,6 +61,9 @@ public class LostFragment extends Fragment {
                         if (position == 2){
                             tab.setText("Wanted");
                         }
+                        if ( position == 3){
+                            tab.setText("Lost Mobile");
+                        }
                     }
                 }).attach();
 

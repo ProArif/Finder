@@ -18,18 +18,6 @@
         android:paddingBottom="64dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/blinktext"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="10dp"-->
-        <!--            android:gravity="center"-->
-        <!--            android:textStyle="bold"-->
-        <!--            android:text="Highest Uploader will be REWARDED!\nTake the help of Police"-->
-        <!--            android:textColor="@color/red"-->
-        <!--            android:textSize="30dp" />-->
-
-
 
     </FrameLayout>
 

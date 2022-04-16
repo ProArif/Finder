@@ -214,7 +214,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void chooseImage(Context context){
 
-        final CharSequence[] optionsMenu = {"Take Photo", "Choose from Gallery", "Exit" }; // create a menuOption Array
+        final CharSequence[] optionsMenu = {"Take Photo", "Exit" }; // create a menuOption Array
         // create a dialog for showing the optionsMenu
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         // set the items in builder
@@ -234,11 +234,11 @@ public class ProfileActivity extends AppCompatActivity {
 
 
                 }
-                else if(optionsMenu[i].equals("Choose from Gallery")){
-                    // choose from  external storage
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    chooseVehicleImageActivityResultLauncher.launch(pickPhoto);
-                }
+//                else if(optionsMenu[i].equals("Choose from Gallery")){
+//                    // choose from  external storage
+//                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    chooseVehicleImageActivityResultLauncher.launch(pickPhoto);
+//                }
                 else if (optionsMenu[i].equals("Exit")) {
                     dialogInterface.dismiss();
                 }
@@ -266,7 +266,8 @@ public class ProfileActivity extends AppCompatActivity {
                                 uploadToStorage();
                                 //Log.e("Image URI",imgUrl);
 
-                            }else if (extras != null){
+                            }
+                            else if (extras != null){
                                 clicked_img = true;
                                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                                 profile_img.setImageBitmap(imageBitmap);
@@ -606,7 +607,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dialog.dismiss();
                 //loadFragment(new AddLostFoundPersonDataFragment());
-                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                //startActivity(new Intent(ProfileActivity.this,MainActivity.class));
             }
         });
 

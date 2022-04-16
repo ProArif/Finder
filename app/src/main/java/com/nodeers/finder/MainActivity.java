@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,6 +34,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
+import com.nodeers.finder.fragments.LostMobileFragment;
 import com.nodeers.finder.fragments.PoliceGetInFragment;
 import com.nodeers.finder.fragments.ReportFragment;
 import com.nodeers.finder.fragments.SettingsFragment;
@@ -149,6 +151,13 @@ public class MainActivity extends BaseActivity {
                         loadFragment(new LostFragment());
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
+
+                    case R.id.mobile_side_nav:
+                        toolbar.setTitle("Lost Mobile");
+                        loadFragment(new LostMobileFragment());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
+
                     case R.id.found_side_nav:
                         toolbar.setTitle("Found");
                         loadFragment(new FoundFragment());
@@ -163,10 +172,6 @@ public class MainActivity extends BaseActivity {
 
                     case R.id.profile:
                         if (mUser != null) {
-                            //toolbar.setTitle("Profile");
-                            //fragment = new ProfileFragment();
-                            //loadFragment(fragment);
-
                             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                             drawerLayout.closeDrawer(GravityCompat.START);
                         } else {
@@ -196,6 +201,11 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -214,15 +224,6 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
-
-//        // Associate searchable configuration with the SearchView
-//        SearchManager searchManager =
-//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView =
-//                (SearchView) menu.findItem(R.id.search).getActionView();
-//        searchView.setSearchableInfo(
-//                searchManager.getSearchableInfo(getComponentName()));
-
 
         return true;
     }
@@ -256,7 +257,7 @@ public class MainActivity extends BaseActivity {
     public void showDialog (){
         // create an alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose One");
+        //builder.setTitle("Choose One");
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

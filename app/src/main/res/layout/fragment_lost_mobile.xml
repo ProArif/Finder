@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="24dp"
-    tools:context=".fragments.LostVehicleFragment">
+    tools:context=".fragments.LostMobileFragment">
 
     <GridView
-        android:id="@+id/vehicle_grid"
+        android:id="@+id/mobile_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -19,6 +18,5 @@
         android:horizontalSpacing="8dp"
         android:numColumns="2"
         />
-
 
 </FrameLayout>

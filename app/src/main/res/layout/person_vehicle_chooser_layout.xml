@@ -11,8 +11,9 @@
     android:id="@+id/textView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-        android:layout_gravity="center"
-    android:text="Select a category to upload data"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:text="@string/select_a_category_to_upload_data"
     android:textSize="25sp"
     android:textStyle="italic" />
 
@@ -21,10 +22,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         android:weightSum="2">
-
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/coinx2"
@@ -73,7 +72,26 @@
 
 </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/coinx3s"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp">
 
+        <ImageButton
+            android:id="@+id/imageButtonMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/mobilec" />
+
+    </androidx.cardview.widget.CardView>
 
 
     </LinearLayout>
