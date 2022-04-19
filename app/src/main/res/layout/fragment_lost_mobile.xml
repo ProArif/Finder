@@ -6,17 +6,11 @@
     android:paddingTop="24dp"
     tools:context=".fragments.LostMobileFragment">
 
-    <GridView
-        android:id="@+id/mobile_grid"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mobile_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="4dp"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
-        android:numColumns="2"
+        android:scrollbars="vertical"
         />
 
 </FrameLayout>

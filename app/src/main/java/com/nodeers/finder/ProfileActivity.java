@@ -56,6 +56,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.nodeers.finder.datamodels.MobileDataModel;
 import com.nodeers.finder.datamodels.UsersData;
 import com.nodeers.finder.fragments.LostFragment;
 import com.nodeers.finder.fragments.ReportFragment;
@@ -530,6 +531,100 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    //for mobile data input
+    public void showMobileDataForm(){
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Please enter below information's");
+
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.mobile_data_form, null);
+        builder.setView(customLayout);
+
+        EditText edtModel = customLayout.findViewById(R.id.edtModelName);
+        EditText edtIMEI = customLayout.findViewById(R.id.edtIMEI);
+        Button btnCancel = customLayout.findViewById(R.id.cancel);
+        Button btnSubmitData = customLayout.findViewById(R.id.submitMobileData);
+
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(true);
+
+        btnSubmitData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String model = edtModel.getText().toString().trim();
+                String imei = edtIMEI.getText().toString().trim();
+
+                if (model.isEmpty()){
+                    edtModel.setError("Please enter your model name");
+                }
+                else if (imei.isEmpty()){
+                    edtIMEI.setError("Please enter your imei");
+                }
+                else if (imei.length() != 15){
+                    edtIMEI.setError("Please enter your imei correctly");
+                }
+                else{
+                    FirebaseDatabase mDatabase;
+                    DatabaseReference dbRef;
+                    MobileDataModel mobileDataModel = new MobileDataModel();
+                    mobileDataModel.setModelName(model);
+                    mobileDataModel.setMobileImei(imei);
+                    mDatabase = FirebaseDatabase.getInstance("https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                    dbRef = mDatabase.getReference("lost mobiles");
+                    showProgressBAr();
+                    mobileDataModel = new MobileDataModel(mobileDataModel.getModelName(),mobileDataModel.getMobileImei());
+
+                    if (mAppUser != null){
+                        Log.e("firebase", "entered user not null");
+
+
+                        dbRef.push().setValue(mobileDataModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Log.e("firebase", "entered task complete");
+                                    hideProgressBar();
+                                    dialog.dismiss();
+                                    Toast.makeText(ProfileActivity.this,"Submitted successfully",Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(ProfileActivity.this,task.getException().toString(),Toast.LENGTH_LONG).show();
+                                    Log.e("firebase", String.valueOf(task.getResult()));
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                hideProgressBar();
+                                dialog.dismiss();
+                                Log.e("firebase", String.valueOf(e.getMessage()));
+                            }
+                        });
+                    }
+                    else{
+                        hideProgressBar();
+                        dialog.dismiss();
+                        Toast.makeText(ProfileActivity.this,"Please login",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            }
+
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
 
     private void showDialog (){
         // create an alert builder
@@ -548,6 +643,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         ImageButton btn_person = customLayout.findViewById(R.id.imageButtonPerson);
         ImageButton btn_vehicle = customLayout.findViewById(R.id.imageButtonCar);
+        ImageButton btn_mobile = customLayout.findViewById(R.id.imageButtonMobile);
+
 
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
@@ -567,6 +664,14 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dialog.dismiss();
                 startActivity(new Intent(ProfileActivity.this,AddVehicleDataActivity.class));
+            }
+        });
+
+        btn_mobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                showMobileDataForm();
             }
         });
 

@@ -10,19 +10,28 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -31,6 +40,9 @@ import com.google.firebase.appcheck.FirebaseAppCheck;
 import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.nodeers.finder.datamodels.MobileDataModel;
 import com.nodeers.finder.fragments.FoundFragment;
 import com.nodeers.finder.fragments.GetInFragment;
 import com.nodeers.finder.fragments.LostFragment;
@@ -46,6 +58,7 @@ public class MainActivity extends BaseActivity {
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public NavigationView navView;
+    private Dialog dialog;
 
     private ActionBar toolbar;
     private Fragment fragment;
@@ -53,6 +66,9 @@ public class MainActivity extends BaseActivity {
 
     private FirebaseUser  mUser;
     private FirebaseAuth mAuth;
+
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference dbRef;
 
 
     @Override
@@ -271,6 +287,7 @@ public class MainActivity extends BaseActivity {
 
         ImageButton btn_person = customLayout.findViewById(R.id.imageButtonPerson);
         ImageButton btn_vehicle = customLayout.findViewById(R.id.imageButtonCar);
+        ImageButton btn_mobile = customLayout.findViewById(R.id.imageButtonMobile);
 
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
@@ -293,7 +310,120 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        btn_mobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                showMobileDataForm();
+            }
+        });
 
+
+    }
+
+    //for mobile data input
+    public void showMobileDataForm(){
+        // create an alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Please enter below information's");
+
+
+        // set the custom layout
+        final View customLayout = getLayoutInflater().inflate(R.layout.mobile_data_form, null);
+        builder.setView(customLayout);
+
+        EditText edtModel = customLayout.findViewById(R.id.edtModelName);
+        EditText edtIMEI = customLayout.findViewById(R.id.edtIMEI);
+        Button btnCancel = customLayout.findViewById(R.id.cancel);
+        Button btnSubmitData = customLayout.findViewById(R.id.submitMobileData);
+
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(true);
+
+        btnSubmitData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String model = edtModel.getText().toString().trim();
+                String imei = edtIMEI.getText().toString().trim();
+
+                if (model.isEmpty()){
+                    edtModel.setError("Please enter your model name");
+                }
+                else if (imei.isEmpty()){
+                    edtIMEI.setError("Please enter your imei");
+                }
+                else if (imei.length() != 15){
+                    edtIMEI.setError("Please enter your imei correctly");
+                }
+                else{
+                    MobileDataModel mobileDataModel = new MobileDataModel();
+                    mobileDataModel.setModelName(model);
+                    mobileDataModel.setMobileImei(imei);
+                    mDatabase = FirebaseDatabase.getInstance("https://finder-67a87-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                    dbRef = mDatabase.getReference("lost mobiles");
+                    showProgressBAr();
+                    mobileDataModel = new MobileDataModel(mobileDataModel.getModelName(),mobileDataModel.getMobileImei());
+
+                    if (mUser != null){
+                        Log.e("firebase", "entered user not null");
+
+
+                        dbRef.push().setValue(mobileDataModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Log.e("firebase", "entered task complete");
+                                    hideProgressBar();
+                                    dialog.dismiss();
+                                    Toast.makeText(MainActivity.this,"Submitted successfully",Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(MainActivity.this,task.getException().toString(),Toast.LENGTH_LONG).show();
+                                    Log.e("firebase", String.valueOf(task.getResult()));
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                hideProgressBar();
+                                dialog.dismiss();
+                                Log.e("firebase", String.valueOf(e.getMessage()));
+                            }
+                        });
+                    }
+                    else{
+                        hideProgressBar();
+                        dialog.dismiss();
+                        Toast.makeText(MainActivity.this,"Please login",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            }
+
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
+
+    private void showProgressBAr(){
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_wait);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void hideProgressBar(){
+        dialog.dismiss();
     }
 
     //for custom get in choice options
