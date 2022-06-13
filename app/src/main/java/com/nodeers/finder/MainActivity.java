@@ -76,6 +76,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
         drawerLayout = findViewById(R.id.my_drawer_layout);
@@ -102,8 +104,8 @@ public class MainActivity extends BaseActivity {
         firebaseAppCheck.installAppCheckProviderFactory(
                 SafetyNetAppCheckProviderFactory.getInstance());
 
-//        tv_blink = findViewById(R.id.blinktext);
-//        BlinkTxtAnime();
+
+
         mAuth = FirebaseAuth.getInstance();
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
