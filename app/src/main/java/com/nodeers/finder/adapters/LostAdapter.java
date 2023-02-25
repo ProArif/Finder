@@ -30,13 +30,13 @@ public class LostAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
+//            case 0:
+//                return new LostPersonFragment();
             case 0:
-                return new LostPersonFragment();
-            case 1:
                 return new LostVehicleFragment();
 //            case 2:
 //                return new WantedFragment();
-            case 2:
+            case 1:
                 return new LostMobileFragment();
 
         }
@@ -46,6 +46,6 @@ public class LostAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 }

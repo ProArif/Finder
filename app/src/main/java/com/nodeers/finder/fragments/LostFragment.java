@@ -52,16 +52,16 @@ public class LostFragment extends Fragment {
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+//                        if (position == 0){
+//                            tab.setText("Lost Person?");
+//                        }
                         if (position == 0){
-                            tab.setText("Lost Person?");
-                        }
-                        if (position == 1){
                             tab.setText("Lost Vehicle?");
                         }
 //                        if (position == 2){
 //                            tab.setText("Wanted");
 //                        }
-                        if ( position == 2){
+                        if ( position == 1){
                             tab.setText("Lost Mobile");
                         }
                     }
