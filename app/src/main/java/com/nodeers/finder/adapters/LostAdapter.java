@@ -34,9 +34,9 @@ public class LostAdapter extends FragmentStateAdapter {
                 return new LostPersonFragment();
             case 1:
                 return new LostVehicleFragment();
+//            case 2:
+//                return new WantedFragment();
             case 2:
-                return new WantedFragment();
-            case 3:
                 return new LostMobileFragment();
 
         }
@@ -46,6 +46,6 @@ public class LostAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }

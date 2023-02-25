@@ -58,10 +58,10 @@ public class LostFragment extends Fragment {
                         if (position == 1){
                             tab.setText("Lost Vehicle?");
                         }
-                        if (position == 2){
-                            tab.setText("Wanted");
-                        }
-                        if ( position == 3){
+//                        if (position == 2){
+//                            tab.setText("Wanted");
+//                        }
+                        if ( position == 2){
                             tab.setText("Lost Mobile");
                         }
                     }
